@@ -1,0 +1,55 @@
+extends layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/account.css')
+    script(src='/javascripts/pages/account.js')
+
+block content
+    .view.plrt16
+        h1 Account Information
+        p.limit-width This information is used when delivering your fudge orders to you.
+
+        .spacer.v20
+
+        .inputs
+            h3 Name
+            input#name-input(type='text' value=user.name)
+
+            .spacer.v20
+
+            h3 Surname
+            input#surname-input(type='text' value=user.surname)
+
+            .spacer.v20
+
+            h3 Grade
+            select#grade-input
+                option(value='none' hidden) None
+                option 1
+                option 2
+                option 3
+                option 4
+                option 5
+                option 6
+                option 7
+                option 8
+                option 9
+                option 10
+                option 11
+                option 12
+                option(value='13') Not In School
+
+        .spacer.v20
+
+        p#info
+
+        .spacer.v20
+
+        button#save.primary.disabled Save
+
+        script.
+            const grade = parseInt('#{user.grade}')
+
+            if (!isNaN(grade)) {
+                byId('grade-input').children[grade].setAttribute('selected', '')
+            }

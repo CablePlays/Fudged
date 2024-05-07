@@ -1,0 +1,16 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        title= title
+
+        script(src='/javascripts/global/cookies.js')
+        script(src='/javascripts/global/rest.js')
+        script(src='/javascripts/global/utility.js')
+
+        block head
+        block assets
+    body
+        block body
+        block script

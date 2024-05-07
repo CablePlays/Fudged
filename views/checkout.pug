@@ -1,0 +1,18 @@
+extends layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/checkout.css')
+
+block content
+    .view
+        .box
+            h1 Checkout
+
+            .spacer.v20
+
+            h2 Purchasing #{item}
+
+            .spacer.v20
+
+            p Quantity
+            input(type='number')

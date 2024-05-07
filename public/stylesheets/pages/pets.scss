@@ -1,0 +1,19 @@
+@import "../global";
+
+#pets-container {
+    height: calc(100vh - $header-height);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    .pet {
+        height: 50px;
+        width: 50px;
+        position: absolute;
+    }
+
+    .pixel-art {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

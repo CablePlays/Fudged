@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.invisible {
+  display: none !important;
+}
+
+.limit-width {
+  max-width: 800px;
+}
+
+.plrt16 {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+}
+
+.spacer.v10 {
+  height: 10px;
+}
+
+.spacer.v20 {
+  height: 20px;
+}
+
+.spacer.v40 {
+  height: 40px;
+}
+
+.spacer.v60 {
+  height: 60px;
+}
+
+.spacer.v80 {
+  height: 80px;
+}
+
+a.primary,
+button.primary {
+  background-color: rgb(241, 209, 27);
+  border: none;
+  border-radius: 4px;
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 8px;
+  text-decoration: none;
+  transition: background-color 0.15s;
+}
+a.primary:hover,
+button.primary:hover {
+  background-color: rgb(228, 197, 23);
+}
+
+header {
+  background-color: rgb(241, 209, 27);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  height: 65px;
+  padding: 0 32px 0 64px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+header .account {
+  align-items: center;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  display: flex;
+}
+header .account .grams {
+  color: rgb(172, 103, 14);
+  font-weight: 800;
+}
+header .account .picture {
+  border-radius: 20px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+}
+header #header-links {
+  align-items: center;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  display: flex;
+  height: 100%;
+}
+header #header-links a {
+  align-items: center;
+  color: black;
+  display: flex;
+  font-size: 18px;
+  font-weight: 500;
+  height: 100%;
+  justify-content: center;
+  padding: 8px;
+  position: relative;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+header #header-links a:hover {
+  color: rgb(50, 50, 50);
+}
+header #header-links a.selected .underline {
+  border-radius: 3px;
+  border-top: 5px solid rgb(172, 103, 14);
+  bottom: 0;
+  position: absolute;
+  width: max(100%, 70px);
+}
+
+.header-spacer {
+  height: 65px;
+}
+
+.view {
+  align-items: center;
+  display: flex;
+  height: calc(100vh - 65px);
+  justify-content: center;
+}
+.view .box {
+  align-items: center;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  min-width: 350px;
+}

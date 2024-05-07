@@ -1,0 +1,10 @@
+{
+    "handle-signin": {
+        "PUT": "Handle login token from Google"
+    },
+    "users": {
+        ":user": {
+            "PUT": "Update user info"
+        }
+    }
+}

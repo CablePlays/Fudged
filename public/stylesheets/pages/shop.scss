@@ -1,0 +1,77 @@
+@import "../global";
+
+.section-a {
+    background-color: $color-tertiary-400;
+    box-shadow: 0 4px 8px rgb(0, 0, 0, 0.3);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: calc(80vh - $header-height);
+    position: relative;
+
+    .subsection-a {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .subsection-b {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        .img-div {
+            aspect-ratio: 1 / 1;
+            background-image: url('../../assets/shop/fudge-jar.png');
+            background-size: cover;
+            display: inline-block;
+            height: 100%;
+        }
+    }
+}
+
+.section-b {
+    align-items: center;
+    display: flex;
+    height: calc(100vh - $header-height);
+    justify-content: space-evenly;
+
+    .item {
+        background-color: $color-tertiary-400;
+        border-radius: 2px;
+        box-shadow: 4px 4px 8px rgb(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        height: 80%;
+        padding: 16px;
+        width: 21%;
+
+        a {
+            margin: 20px auto 4px auto;
+            width: min-content;
+        }
+
+        img {
+            height: 100%;
+            margin: 20px auto 0 auto;
+            max-width: 100%;
+        }
+
+        .line {
+            border-top: 2px solid rgb(0, 0, 0, 0.5);
+            margin-top: 20px;
+        }
+
+        .price,
+        .weight {
+            margin-top: 20px;
+        }
+    }
+}
+
+.section-c {
+    background-color: $color-secondary-400;
+    box-shadow: 0 -4px 8px rgb(0, 0, 0, 0.3);
+    height: calc(100vh - $header-height);
+}

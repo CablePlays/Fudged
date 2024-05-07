@@ -1,0 +1,23 @@
+@import "../global";
+
+.inputs {
+    width: 200px;
+
+    input,
+    select {
+        padding: 4px;
+        width: 100%;
+    }
+}
+
+#info.error {
+    color: $color-error;
+}
+
+#save {
+    width: 100px;
+
+    &.disabled {
+        background-color: $color-primary-800;
+    }
+}

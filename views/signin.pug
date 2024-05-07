@@ -1,0 +1,45 @@
+extends head
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/signin.css')
+    script(src='/javascripts/pages/signin.js')
+    script(src='https://accounts.google.com/gsi/client')
+
+block body
+    img.logo(src='/assets/waving-dog.png' onclick='location.href="/"')
+    .view
+        .box
+            h1 Sign In
+
+            .spacer.v20
+
+            p#info To use all services of Dogwave Fudge, you must sign in.
+
+            .spacer.v20
+
+            #g_id_onload(
+                data-client_id="641450297486-vpsfada80jv9t99aq9ec6sv5iiafujr6.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="handleLogin"
+                data-auto_prompt="false"
+            )
+            .g_id_signin(
+                data-type="standard"
+                data-shape="pill"
+                data-theme="filled_black"
+                data-text="signin"
+                data-size="large"
+                data-logo_alignment="left"
+                data-width="250"
+            )
+
+block script
+    script.
+        const viewElement = document.getElementsByClassName('view')[0]
+
+        if (Math.random() < 0.5) {
+            viewElement.style.color = 'white'
+        } else {
+            viewElement.style['background-size'] = 'cover'
+        }

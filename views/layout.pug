@@ -1,0 +1,32 @@
+extends head
+
+block body
+    header
+        #header-links
+            a(href='/') Home
+                .underline
+            a(href='/shop') Shop
+                .underline
+            a(href='/pets') Pets
+                .underline
+            a(href='/account') Account
+                .underline
+        .account
+            p.grams(src=user.picture style=`display: ${displays.signedIn.true.block}`) 560g
+            a.primary(href='signin' style=`display: ${displays.signedIn.false.block}`) Sign In
+            button.primary(onclick='signOut(); location.href = "/"' style=`display: ${displays.signedIn.true.block}`) Sign Out
+            img.picture(onclick='location.href = "/account"' src=user.picture style=`display: ${displays.signedIn.true.block}`)
+
+        script.
+            let selectedLink = {
+                '/': 0,
+                '/shop': 1,
+                '/pets': 2,
+                '/account': 3
+            }[location.pathname]
+
+            if (selectedLink != null) byId("header-links").children[selectedLink].classList.add("selected")
+
+    .header-spacer
+    
+    block content

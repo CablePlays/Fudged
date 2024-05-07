@@ -1,0 +1,51 @@
+extends layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/shop.css')
+
+block content
+    .section-a
+        .subsection-a
+            h1 Jar
+
+            .spacer.v20
+
+            p The perfect gift for anyone.
+
+            .spacer.v20
+
+            a.primary(href='/checkout/1') Purchase
+        .subsection-b
+            .img-div
+    
+    .section-b
+        .item
+            h1 Packet
+            p.weight 50g
+            p.price R12 / item
+            .line
+            img(src='/assets/background.jpg')
+            a.primary(href='/checkout/0') Purchase
+        .item
+            h1 Jar
+            p.weight 800g
+            p.price R12 / item
+            .line
+            img(src='/assets/background.jpg')
+            a.primary(href='/checkout/1') Purchase
+        .item
+            h1 Batch
+            p.weight 1200g
+            p.price R12 / item
+            .line
+            img(src='/assets/background.jpg')
+            a.primary(href='/checkout/2') Purchase
+        .item
+            h1 Bulk
+            p.weight Custom Amount
+            p.price Price To Be Determined
+            .line
+            img(src='/assets/background.jpg')
+            a.primary(href='/checkout/3') Purchase
+    
+    .section-c

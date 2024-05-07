@@ -1,0 +1,76 @@
+extends layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/home.css')
+    script(src='/javascripts/pages/home.js')
+
+block content
+    .section-a
+        .subsection-a
+            .overlay
+                h1 Dogwave Fudge
+                .spacer.v20
+                .row
+                    p Making your day sweeter.
+                    img.waving-dog(src='/assets/waving-dog.png')
+
+        .subsection-b
+            h1 Shop
+
+            .spacer.v60
+
+            #shop-items
+                #viewport
+                    .item
+                        h2 Packet
+                        .parts
+                            .left(style='background-image: url("../../assets/background-2.jpg")')
+                            .right
+                                p Sweet Snack
+                                a.primary(href='/shop') View
+                    .item
+                        h2 Jar
+                        .parts
+                            .left(style='background-image: url("../../assets/background-2.jpg")')
+                            .right
+                                p Great Gift
+                                a.primary(href='/shop') View
+                    .item
+                        h2 Batch
+                        .parts
+                            .left(style='background-image: url("../../assets/background-2.jpg")')
+                            .right
+                                p Sugar Rush
+                                a.primary(href='/shop') View
+                    .item
+                        h2 Bulk
+                        .parts
+                            .left(style='background-image: url("../../assets/background-2.jpg")')
+                            .right
+                                p Custom Needs
+                                a.primary(href='/shop') View
+                    .item
+                        h2 Eggs
+                        .parts
+                            .left(style='background-image: url("../../assets/background-2.jpg")')
+                            .right
+                                p Hatch Dogs
+                                a.primary(href='/shop') View
+
+            p.weight 56.12kg sold
+
+    .section-b
+        .spacer.v40
+
+        h1 Earn Free Fudge
+
+        .spacer.v20
+
+        .subsection-container
+            .subsection-a
+                p.
+                    Every time you purcahse fudge, you are rewarded with grams equivalent to the total weight of fudge bought.
+                    Use these grams to purchase eggs and hatch your own puppies (yes, dogs come from eggs).
+                    Grow your puppies using dog food and earn free fudge for every fully grown dog!
+            .subsection-b
+                img(src='/assets/home/pets-page.png')
