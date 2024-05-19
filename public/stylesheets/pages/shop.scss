@@ -58,13 +58,18 @@ $general-gap: 32px;
     }
 }
 
-.section-b {
+.section-b,
+.section-c,
+.section-d {
     display: flex;
     flex-wrap: wrap;
     gap: $general-gap;
     justify-content: center;
     padding: $general-gap;
+}
 
+.section-b,
+.section-d {
     .item {
         @include card($color-tertiary-400, white);
     }
@@ -72,36 +77,10 @@ $general-gap: 32px;
 
 .section-c {
     background-color: $color-tertiary-400;
-    box-shadow: 0 -4px 8px rgb(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
+    box-shadow: 0 0 8px 4px rgb(0, 0, 0, 0.3);
 
-    .items {
-        padding: $general-gap;
-
-        .eggs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: $general-gap;
-            justify-content: center;
-        }
-
-        .food {
-            display: flex;
-            flex-wrap: wrap;
-            gap: $general-gap;
-            justify-content: center;
-        }
-
-        .item {
-            @include card(white, $color-primary-400);
-        }
-
-        .line {
-            border-top: 2px solid rgb(0, 0, 0, 0.5);
-            margin: $general-gap 0 $general-gap 10%;
-            width: 80%;
-        }
+    .item {
+        @include card(white, $color-tertiary-400);
     }
 }
 

@@ -162,14 +162,18 @@ header #header-links a.selected .underline {
   height: 100%;
 }
 
-.section-b {
+.section-b,
+.section-c,
+.section-d {
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
   justify-content: center;
   padding: 32px;
 }
-.section-b .item {
+
+.section-b .item,
+.section-d .item {
   background-color: rgb(187, 142, 100);
   border-radius: 4px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
@@ -181,10 +185,12 @@ header #header-links a.selected .underline {
   text-align: center;
   width: 300px;
 }
-.section-b .item img {
+.section-b .item img,
+.section-d .item img {
   width: 100%;
 }
-.section-b .item .price {
+.section-b .item .price,
+.section-d .item .price {
   color: white;
   font-weight: 700;
   margin-top: 20px;
@@ -192,26 +198,9 @@ header #header-links a.selected .underline {
 
 .section-c {
   background-color: rgb(187, 142, 100);
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.3);
 }
-.section-c .items {
-  padding: 32px;
-}
-.section-c .items .eggs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  justify-content: center;
-}
-.section-c .items .food {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  justify-content: center;
-}
-.section-c .items .item {
+.section-c .item {
   background-color: white;
   border-radius: 4px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
@@ -223,18 +212,13 @@ header #header-links a.selected .underline {
   text-align: center;
   width: 300px;
 }
-.section-c .items .item img {
+.section-c .item img {
   width: 100%;
 }
-.section-c .items .item .price {
-  color: rgb(241, 209, 27);
+.section-c .item .price {
+  color: rgb(187, 142, 100);
   font-weight: 700;
   margin-top: 20px;
-}
-.section-c .items .line {
-  border-top: 2px solid rgba(0, 0, 0, 0.5);
-  margin: 32px 0 32px 10%;
-  width: 80%;
 }
 
 .section-yoco {
