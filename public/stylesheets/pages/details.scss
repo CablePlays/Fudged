@@ -1,13 +1,16 @@
 @import "../global";
 
 .inputs {
-    width: 200px;
 
     input,
     select {
         padding: 4px;
-        width: 100%;
+        width: 200px;
     }
+}
+
+.phone-number-info {
+    font-size: 14px;
 }
 
 #info.error {
@@ -16,8 +19,4 @@
 
 #save {
     width: 100px;
-
-    &.disabled {
-        background-color: $color-primary-800;
-    }
 }

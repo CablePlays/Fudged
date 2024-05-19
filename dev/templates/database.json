@@ -1,4 +1,16 @@
 {
+    "massSold": "total grams of fudge sold",
+    "orders": [
+        {
+            "id": 0,
+            "userId": 0,
+            "date": "date ordered",
+            "itemId": 0,
+            "quantity": 1,
+            "itemPrice": "price for one item in rand at the time",
+            "fulfilled": false
+        }
+    ],
     "users": {
         "user ID": "user email"
     }

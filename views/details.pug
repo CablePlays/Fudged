@@ -1,8 +1,8 @@
 extends layout
 
 block assets
-    link(rel='stylesheet' href='/stylesheets/pages/account.css')
-    script(src='/javascripts/pages/account.js')
+    link(rel='stylesheet' href='/stylesheets/pages/details.css')
+    script(src='/javascripts/pages/details.js')
 
 block content
     .view.plrt16
@@ -38,6 +38,13 @@ block content
                 option 11
                 option 12
                 option(value='13') Not In School
+
+            .spacer.v20
+
+            h3 Phone Number
+            p.phone-number-info.limit-width Your phone number is used to contact you to arrange when you can collect your goods if you do not stay on Treverton.
+            .spacer.v10
+            input#phone-number-input(type='text' value=user.phoneNumber)
 
         .spacer.v20
 

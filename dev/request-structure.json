@@ -2,6 +2,15 @@
     "handle-signin": {
         "PUT": "Handle login token from Google"
     },
+    "orders": {
+        "GET": "Get orders"
+    },
+    "purchase": {
+        "POST": "Request purchase link",
+        "yoco": {
+            "POST": "Yoco payment webhook endpoint"
+        }
+    },
     "users": {
         ":user": {
             "PUT": "Update user info"

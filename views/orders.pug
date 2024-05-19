@@ -1,0 +1,20 @@
+extends layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/orders.css')
+    script(src='/javascripts/pages/orders.js')
+
+block content
+    .plrt16
+        h1 Orders
+
+        .spacer.v40
+
+        p#info Loading...
+
+        table#orders-table.invisible
+            tr
+                th Date
+                th Item
+                th Quantity
+                th Total Price

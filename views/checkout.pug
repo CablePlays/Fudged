@@ -2,6 +2,7 @@ extends layout
 
 block assets
     link(rel='stylesheet' href='/stylesheets/pages/checkout.css')
+    script(src='/javascripts/pages/checkout.js')
 
 block content
     .view
@@ -14,5 +15,25 @@ block content
 
             .spacer.v20
 
+            p#price-display
+            .spacer.v10
             p Quantity
-            input(type='number')
+
+            .spacer.v20
+
+            .amount-container
+                button#amount-decrease.primary.active-color -
+                p#amount-display
+                button#amount-increase.primary.active-color +
+
+            .spacer.v40
+
+            p.info If you stay on Treverton, your goods will be delivered to you.
+
+            .spacer.v20
+
+            p.info Otherwise, you will be contacted via your phone number to arrange when you can collect your goods.
+
+            .spacer.v20
+
+            button#proceed-button.primary Proceed

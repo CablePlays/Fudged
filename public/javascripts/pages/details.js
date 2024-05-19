@@ -29,9 +29,10 @@ function setInfo(text, error) {
 async function saveInfo() {
     if (!_infoChanged || _saving) return
 
-    const name = byId('name-input').value
-    const surname = byId('surname-input').value
     const grade = byId('grade-input').value
+    const name = byId('name-input').value
+    const phoneNumber = byId('phone-number-input').value
+    const surname = byId('surname-input').value
 
     if (grade === 'none') {
         setInfo('Please select your grade!', true)
@@ -44,7 +45,7 @@ async function saveInfo() {
     setInfo('Saving...', false)
 
     const userId = getUserId()
-    const { ok } = await putRequest(`/users/${userId}`, { name, surname, grade: parseInt(grade) })
+    const { ok } = await putRequest(`/users/${userId}`, { grade: parseInt(grade), name, phoneNumber, surname })
 
     _saving = false
 
@@ -66,6 +67,7 @@ onLoad(() => {
 
     byId('grade-input').addEventListener('change', infoChanged)
     byId('name-input').addEventListener('input', infoChanged)
+    byId('phone-number-input').addEventListener('input', infoChanged)
     byId('surname-input').addEventListener('input', infoChanged)
 
     getSaveButton().addEventListener('click', saveInfo)

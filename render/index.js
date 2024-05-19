@@ -1,6 +1,6 @@
 import express from 'express'
 import cookies from '../server/cookies.js'
-import { isSigninValid, getUserInfo } from '../server/database.js'
+import database, { getDatabase, getUser, getUserInfo, isSigninValid } from '../server/database.js'
 import { requireSignedIn } from './middleware.js'
 
 const router = express.Router()
@@ -39,7 +39,7 @@ async function advancedRender(req, res, path, statusCode = 200) {
     }
 
     placeholders.displays = displays
-    placeholders.user = (userId == null) ? {} : getUserInfo(userId)
+    placeholders.user = (userId == null) ? {} : getUserInfo(userId, true)
 
     res.status(statusCode).render(path, placeholders)
 }
@@ -55,17 +55,26 @@ router.use('/', (req, res, next) => { // provide advanced render, placeholders &
     next()
 })
 
+router.use('/', (req, res, next) => { // provide user information
+    if (isSigninValid(req)) {
+        req.signedIn = true
+        req.userId = cookies.getUserId(req)
+    } else {
+        req.signedIn = false
+    }
+
+    next()
+})
+
 router.get('/', (req, res) => {
+    const { placeholders } = res
+    placeholders.massSold = ((getDatabase().get(database.PATH_MASS_SOLD) ?? 0) / 1000).toFixed(2)
+
     res.setTitle('Home')
     res.ren('home')
 })
 
-router.get('/account', requireSignedIn, (req, res) => {
-    res.setTitle('Account')
-    res.ren('account')
-})
-
-router.get('/checkout/:itemId', (req, res) => {
+router.get('/checkout/:itemId', requireSignedIn, (req, res) => {
     const { params } = req
     const { placeholders } = res
     const itemId = parseInt(params.itemId)
@@ -81,6 +90,16 @@ router.get('/checkout/:itemId', (req, res) => {
     res.ren('checkout')
 })
 
+router.get('/details', requireSignedIn, (req, res) => {
+    res.setTitle('Details')
+    res.ren('details')
+})
+
+router.get('/orders', requireSignedIn, (req, res) => {
+    res.setTitle('Orders')
+    res.ren('orders')
+})
+
 router.get('/pets', requireSignedIn, (req, res) => {
     res.setTitle('Pets')
     res.ren('pets')
@@ -94,6 +113,19 @@ router.get('/shop', (req, res) => {
 router.get('/signin', (req, res) => {
     res.setTitle('Signin')
     res.ren('signin')
+})
+
+router.get('/tab', requireSignedIn, (req, res) => {
+    const { userId } = req
+    const { placeholders } = res
+
+    const tab = getUser(userId).get(database.PATH_USER_TAB) ?? 0
+    placeholders.tab = tab.toFixed(2)
+    placeholders.buttonDisplay = tab > 0 ? 'block' : 'none'
+    placeholders.infoDisplay = tab > 0 ? 'none' : 'block'
+
+    res.setTitle('Tab')
+    res.ren('tab')
 })
 
 export default router

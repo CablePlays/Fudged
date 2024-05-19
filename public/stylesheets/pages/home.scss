@@ -37,12 +37,6 @@
         flex-direction: column;
         justify-content: center;
 
-        .weight {
-            bottom: 20px;
-            color: white;
-            position: absolute;
-        }
-
         #shop-items {
             height: 240px;
             overflow-x: hidden;
@@ -143,5 +137,22 @@
                 width: 100%;
             }
         }
+    }
+}
+
+.section-c {
+    align-items: center;
+    display: flex;
+    height: calc(100vh - $header-height);
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    h1 {
+        font-size: 50px;
+    }
+
+    p {
+        font-size: 18px;
     }
 }

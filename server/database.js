@@ -8,9 +8,11 @@ const compact = false
 
 /* Database */
 
+const PATH_MASS_SOLD = 'massSold'
+const PATH_ORDERS = 'orders'
 const PATH_USERS = 'users'
 
-function getDatabase() {
+export function getDatabase() {
     return new FSDB(path.join(DIRECTORY, 'database.json'), compact)
 }
 
@@ -54,10 +56,13 @@ export function newUser(email) {
 /* Users */
 
 const PATH_USER_GRADE = 'grade'
+const PATH_USER_GRAMS = 'grams'
 const PATH_USER_NAME = 'name'
+const PATH_USER_PHONE_NUMBER = 'phoneNumber'
 const PATH_USER_PICTURE = 'picture'
 const PATH_USER_SESSION_TOKEN = 'sessionToken'
 const PATH_USER_SURNAME = 'surname'
+const PATH_USER_TAB = 'tab'
 
 function getUserFileName(userId) {
     return `user${userId}`
@@ -67,16 +72,23 @@ export function getUser(userId) {
     return new FSDB(path.join(USER_DIRECTORY, getUserFileName(userId)), compact)
 }
 
-export function getUserInfo(userId) {
+export function getUserInfo(userId, includePrivate = false) {
     const db = getUser(userId)
 
-    return {
+    const userInfo = {
         id: userId,
         grade: db.get(PATH_USER_GRADE),
         name: db.get(PATH_USER_NAME),
         picture: db.get(PATH_USER_PICTURE),
         surname: db.get(PATH_USER_SURNAME)
     }
+
+    if (includePrivate) {
+        userInfo.grams = db.get(PATH_USER_GRAMS) ?? 0
+        userInfo.phoneNumber = db.get(PATH_USER_PHONE_NUMBER)
+    }
+
+    return userInfo
 }
 
 export function isSigninValid(req) {
@@ -85,9 +97,15 @@ export function isSigninValid(req) {
 }
 
 export default {
+    PATH_MASS_SOLD,
+    PATH_ORDERS,
+
     PATH_USER_GRADE,
+    PATH_USER_GRAMS,
     PATH_USER_NAME,
+    PATH_USER_PHONE_NUMBER,
     PATH_USER_PICTURE,
     PATH_USER_SESSION_TOKEN,
-    PATH_USER_SURNAME
+    PATH_USER_SURNAME,
+    PATH_USER_TAB
 }

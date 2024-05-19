@@ -45,19 +45,31 @@ button {
 
 a.primary,
 button.primary {
+  align-items: center;
   background-color: rgb(241, 209, 27);
   border: none;
   border-radius: 4px;
   color: black;
+  display: flex;
   font-size: 14px;
   font-weight: 500;
+  justify-content: center;
   padding: 12px 8px;
   text-decoration: none;
   transition: background-color 0.15s;
 }
+a.primary.active-color:active:not(.disabled),
+button.primary.active-color:active:not(.disabled) {
+  background-color: rgb(247, 211, 12);
+  transition: background-color 0s;
+}
 a.primary:hover,
 button.primary:hover {
   background-color: rgb(228, 197, 23);
+}
+a.primary.disabled,
+button.primary.disabled {
+  background-color: rgb(133, 117, 29);
 }
 
 header {
@@ -122,22 +134,12 @@ header #header-links a.selected .underline {
   height: 65px;
 }
 
-.inputs {
-  width: 200px;
+table#orders-table {
+  width: min(100%, 700px);
 }
-.inputs input,
-.inputs select {
-  padding: 4px;
-  width: 100%;
+table#orders-table td {
+  padding-top: 20px;
 }
-
-#info.error {
-  color: rgb(165, 42, 42);
-}
-
-#save {
-  width: 100px;
-}
-#save.disabled {
-  background-color: rgb(133, 117, 29);
+table#orders-table th {
+  text-align: start;
 }

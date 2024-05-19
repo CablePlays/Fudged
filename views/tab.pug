@@ -1,0 +1,18 @@
+extends layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/home.css')
+
+block content
+    .plrt16
+        h1 Tab
+
+        .spacer.v20
+
+        p R#{tab}
+
+        .spacer.v20
+
+        p(style=`display: ${infoDisplay}`) You have nothing to pay off.
+
+        button.primary(style=`display: ${buttonDisplay}`) Pay Off

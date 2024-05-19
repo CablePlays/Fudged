@@ -45,19 +45,31 @@ button {
 
 a.primary,
 button.primary {
+  align-items: center;
   background-color: rgb(241, 209, 27);
   border: none;
   border-radius: 4px;
   color: black;
+  display: flex;
   font-size: 14px;
   font-weight: 500;
+  justify-content: center;
   padding: 12px 8px;
   text-decoration: none;
   transition: background-color 0.15s;
 }
+a.primary.active-color:active:not(.disabled),
+button.primary.active-color:active:not(.disabled) {
+  background-color: rgb(247, 211, 12);
+  transition: background-color 0s;
+}
 a.primary:hover,
 button.primary:hover {
   background-color: rgb(228, 197, 23);
+}
+a.primary.disabled,
+button.primary.disabled {
+  background-color: rgb(133, 117, 29);
 }
 
 header {

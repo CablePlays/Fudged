@@ -22,7 +22,7 @@ router.use('/:targetUserId', (req, res, next) => {
 
 userRouter.put('/', requireSelf, (req, res) => {
     const { body, targetUserId } = req
-    const { name, surname, grade } = body
+    const { grade, name, phoneNumber, surname } = body
 
     if (grade < 1 || grade > 13) {
         res.res(400, 'invalid_grade')
@@ -31,9 +31,10 @@ userRouter.put('/', requireSelf, (req, res) => {
 
     const db = getUser(targetUserId)
 
-    db.set(database.PATH_USER_NAME, name)
-    db.set(database.PATH_USER_SURNAME, surname)
     db.set(database.PATH_USER_GRADE, grade)
+    db.set(database.PATH_USER_NAME, name)
+    db.set(database.PATH_USER_PHONE_NUMBER, phoneNumber)
+    db.set(database.PATH_USER_SURNAME, surname)
 
     res.res(204)
 })

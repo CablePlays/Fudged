@@ -45,19 +45,31 @@ button {
 
 a.primary,
 button.primary {
+  align-items: center;
   background-color: rgb(241, 209, 27);
   border: none;
   border-radius: 4px;
   color: black;
+  display: flex;
   font-size: 14px;
   font-weight: 500;
+  justify-content: center;
   padding: 12px 8px;
   text-decoration: none;
   transition: background-color 0.15s;
 }
+a.primary.active-color:active:not(.disabled),
+button.primary.active-color:active:not(.disabled) {
+  background-color: rgb(247, 211, 12);
+  transition: background-color 0s;
+}
 a.primary:hover,
 button.primary:hover {
   background-color: rgb(228, 197, 23);
+}
+a.primary.disabled,
+button.primary.disabled {
+  background-color: rgb(133, 117, 29);
 }
 
 header {
@@ -151,42 +163,104 @@ header #header-links a.selected .underline {
 }
 
 .section-b {
-  align-items: center;
   display: flex;
-  height: calc(100vh - 65px);
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  padding: 32px;
 }
 .section-b .item {
   background-color: rgb(187, 142, 100);
-  border-radius: 2px;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  height: 80%;
-  padding: 16px;
-  width: 21%;
-}
-.section-b .item a {
-  margin: 20px auto 4px auto;
-  width: -moz-min-content;
-  width: min-content;
+  height: 480px;
+  padding: 32px;
+  position: relative;
+  text-align: center;
+  width: 300px;
 }
 .section-b .item img {
-  height: 100%;
-  margin: 20px auto 0 auto;
-  max-width: 100%;
+  width: 100%;
 }
-.section-b .item .line {
-  border-top: 2px solid rgba(0, 0, 0, 0.5);
-  margin-top: 20px;
-}
-.section-b .item .price,
-.section-b .item .weight {
+.section-b .item .price {
+  color: white;
+  font-weight: 700;
   margin-top: 20px;
 }
 
 .section-c {
-  background-color: rgb(172, 103, 14);
+  background-color: rgb(187, 142, 100);
   box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
-  height: calc(100vh - 65px);
+  display: flex;
+  justify-content: center;
+}
+.section-c .items {
+  padding: 32px;
+}
+.section-c .items .eggs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+.section-c .items .food {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+.section-c .items .item {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: 480px;
+  padding: 32px;
+  position: relative;
+  text-align: center;
+  width: 300px;
+}
+.section-c .items .item img {
+  width: 100%;
+}
+.section-c .items .item .price {
+  color: rgb(241, 209, 27);
+  font-weight: 700;
+  margin-top: 20px;
+}
+.section-c .items .line {
+  border-top: 2px solid rgba(0, 0, 0, 0.5);
+  margin: 32px 0 32px 10%;
+  width: 80%;
+}
+
+.section-yoco {
+  border: 5px solid rgb(0, 169, 224);
+  border-radius: 4px;
+  display: grid;
+  gap: 40px 20px;
+  justify-items: center;
+  margin: 10px;
+  padding: 16px;
+  text-align: center;
+}
+@media screen and (min-width: 700px) {
+  .section-yoco {
+    grid-template-columns: 1fr 2fr;
+    justify-items: initial;
+    text-align: start;
+  }
+}
+.section-yoco .subsection-a img {
+  cursor: pointer;
+  display: block;
+  height: 100px;
+}
+.section-yoco .subsection-b {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

@@ -134,18 +134,20 @@ header #header-links a.selected .underline {
   height: 65px;
 }
 
-#pets-container {
-  height: calc(100vh - 65px);
-  overflow: hidden;
-  position: relative;
-  width: 100%;
+.inputs input,
+.inputs select {
+  padding: 4px;
+  width: 200px;
 }
-#pets-container .pet {
-  height: 50px;
-  width: 50px;
-  position: absolute;
+
+.phone-number-info {
+  font-size: 14px;
 }
-#pets-container .pixel-art {
-  display: flex;
-  flex-wrap: wrap;
+
+#info.error {
+  color: rgb(165, 42, 42);
+}
+
+#save {
+  width: 100px;
 }

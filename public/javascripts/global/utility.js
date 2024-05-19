@@ -1,9 +1,44 @@
+const ITEMS = {
+    0: {
+        mass: 50,
+        max: 20,
+        name: 'Packet',
+        price: 12
+    },
+    1: {
+        mass: 1000,
+        max: 2,
+        name: 'Jar',
+        price: 100
+    },
+    2: {
+        mass: 1500,
+        max: 1,
+        name: 'Batch',
+        price: 200
+    }
+}
+
 function onLoad(onLoad) {
     window.addEventListener('load', onLoad)
 }
 
 function clamp(val, min, max) {
     return Math.min(Math.max(val, min), max)
+}
+
+function formatDate(date) {
+    if (typeof date === 'string') {
+        date = new Date(date)
+    }
+
+    let day = date.getDate() + ''
+    if (day.length === 1) day = '0' + day
+
+    let month = date.getMonth() + 1 + ''
+    if (month.length === 1) month = '0' + month
+
+    return `${day}/${month}/${date.getFullYear()}`
 }
 
 /* URL */
@@ -56,7 +91,7 @@ function createElement(type, options) {
     if (onClick) element.addEventListener('click', e => onClick(e, element))
     if (p) byId(p).appendChild(element)
     if (r) byId(r).replaceWith(element)
-    if (t) element.innerHTML = t
+    if (t != null) element.innerHTML = t
     if (consumer) consumer(element)
 
     return element

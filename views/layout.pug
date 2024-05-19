@@ -7,25 +7,31 @@ block body
                 .underline
             a(href='/shop') Shop
                 .underline
+            a(href='/orders') Orders
+                .underline
+            a(href='/tab') Tab
+                .underline
             a(href='/pets') Pets
                 .underline
-            a(href='/account') Account
+            a(href='/details') Details
                 .underline
         .account
-            p.grams(src=user.picture style=`display: ${displays.signedIn.true.block}`) 560g
+            p.grams(src=user.picture style=`display: ${displays.signedIn.true.block}`) #{user.grams}g
             a.primary(href='signin' style=`display: ${displays.signedIn.false.block}`) Sign In
             button.primary(onclick='signOut(); location.href = "/"' style=`display: ${displays.signedIn.true.block}`) Sign Out
-            img.picture(onclick='location.href = "/account"' src=user.picture style=`display: ${displays.signedIn.true.block}`)
+            img.picture(onclick='location.href = "/details"' src=user.picture style=`display: ${displays.signedIn.true.block}`)
 
         script.
             let selectedLink = {
                 '/': 0,
                 '/shop': 1,
-                '/pets': 2,
-                '/account': 3
+                '/orders': 2,
+                '/tab': 3,
+                '/pets': 4,
+                '/details': 5
             }[location.pathname]
 
-            if (selectedLink != null) byId("header-links").children[selectedLink].classList.add("selected")
+            if (selectedLink != null) byId('header-links').children[selectedLink].classList.add('selected')
 
     .header-spacer
     

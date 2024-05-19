@@ -16,36 +16,79 @@ block content
 
             a.primary(href='/checkout/1') Purchase
         .subsection-b
-            .img-div
+            //- .img-div
     
+    .section-yoco
+        .subsection-a
+            img(src='/assets/logos/yoco.svg' onclick='window.open("https://yoco.com"), "_blank"')
+        .subsection-b
+            h2 Powered By Yoco
+            p All payments are made through Yoco, ensuring the security of your payment details.
+
     .section-b
         .item
             h1 Packet
-            p.weight 50g
+            p.description 50g
             p.price R12 / item
-            .line
-            img(src='/assets/background.jpg')
+            img(src='/assets/shop/egg-blue.png')
             a.primary(href='/checkout/0') Purchase
         .item
             h1 Jar
-            p.weight 800g
+            p.description 800g
             p.price R12 / item
-            .line
-            img(src='/assets/background.jpg')
+            img(src='/assets/shop/egg-blue.png')
             a.primary(href='/checkout/1') Purchase
         .item
             h1 Batch
-            p.weight 1200g
+            p.description 1200g
             p.price R12 / item
-            .line
-            img(src='/assets/background.jpg')
+            img(src='/assets/shop/egg-blue.png')
             a.primary(href='/checkout/2') Purchase
         .item
             h1 Bulk
-            p.weight Custom Amount
+            p.description Custom Amount
             p.price Price To Be Determined
-            .line
-            img(src='/assets/background.jpg')
-            a.primary(href='/checkout/3') Purchase
-    
+            img(src='/assets/shop/egg-blue.png')
+            a.primary Purchase
+
     .section-c
+        .items
+            .eggs
+                .item
+                    h2 Basic Egg
+                    p These dogs take a long time to grow.
+                    p.price 500g
+                    img(src='/assets/shop/egg-blue.png')
+                    a.primary Purchase
+                .item
+                    h2 Buffed Egg
+                    p Dogs from this egg grow quickly.
+                    p.price 1000g
+                    img(src='/assets/shop/egg-green.png')
+                    a.primary Purchase
+            .line
+            .food
+                .item
+                    h2 Basic Dog Food
+                    p.description Cheap dog food which grows a dog a little bit.
+                    p.price 100g
+                    img(src='/assets/shop/egg-blue.png')
+                    a.primary Purchase
+                .item
+                    h2 Buffed Dog Food
+                    p.description Grows a dog a bit more than the cheap stuff.
+                    p.price 200g
+                    img(src='/assets/shop/egg-blue.png')
+                    a.primary Purchase
+                .item
+                    h2 Great Dog Food
+                    p.description Quite expensive but works very well.
+                    p.price 300g
+                    img(src='/assets/shop/egg-blue.png')
+                    a.primary Purchase
+                .item
+                    h2 Prime Dog Food
+                    p.description Is this stuff even worth the price?
+                    p.price 500g
+                    img(src='/assets/shop/egg-blue.png')
+                    a.primary Purchase

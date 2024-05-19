@@ -1,7 +1,10 @@
 {
     "grade": 0,
+    "grams": 0,
     "name": "user first name",
+    "phoneNumber": "user phone number",
     "picture": "user profile picture",
     "sessionToken": "user session token",
-    "surname": "user surname"
+    "surname": "user surname",
+    "tab": "amount owing in Rand"
 }

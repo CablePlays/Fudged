@@ -9,7 +9,7 @@ async function handleLogin(val) {
         setInfo('Signed in, redirecting...')
 
         if (newUser) {
-            location.href = '/account?first=true'
+            location.href = '/details'
         } else {
             location.href = getParam('redirect') ?? '/'
         }

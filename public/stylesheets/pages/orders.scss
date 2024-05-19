@@ -1,0 +1,13 @@
+@import "../global";
+
+table#orders-table {
+    width: min(100%, 700px);
+
+    td {
+        padding-top: 20px;
+    }
+
+    th {
+        text-align: start;
+    }
+}

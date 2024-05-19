@@ -1,9 +1,12 @@
 import crypto from 'crypto'
 import express from 'express'
 import { OAuth2Client } from 'google-auth-library'
+import getRawBody from 'raw-body'
 import cookies from '../server/cookies.js'
 import database, { getUser, getUserId, isSigninValid, newUser } from '../server/database.js'
 
+import ordersRouter from './orders.js'
+import purchaseRouter from './purchase.js'
 import usersRouter from './users.js'
 
 const router = express.Router()
@@ -24,6 +27,28 @@ router.use('/', (req, res, next) => { // provide response method
     }
 
     next()
+})
+
+router.use('/', (req, res, next) => { // handle body
+    const { headers } = req
+
+    getRawBody(req, {
+        length: headers['content-length'],
+        encoding: 'utf-8'
+    }, (err, rawBody) => {
+        if (err) {
+            next(err)
+            return
+        }
+
+        req.rawBody = rawBody
+
+        if (headers['content-type'] === 'application/json') {
+            req.body = JSON.parse(rawBody)
+        }
+
+        next()
+    })
 })
 
 router.use('/', (req, res, next) => { // provide user information
@@ -81,6 +106,8 @@ router.put('/handle-signin', async (req, res) => {
     res.res(200, { newUser: isNewUser })
 })
 
+router.use('/orders', ordersRouter)
+router.use('/purchase', purchaseRouter)
 router.use('/users', usersRouter)
 
 export default router

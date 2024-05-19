@@ -22,10 +22,8 @@ async function _sendRequest(method, path, body) {
         status: fetchResponse.status
     }
 
-    console.log('a')
     if (fetchResponse.headers.get('content-type')?.includes('application/json')) {
         const json = await fetchResponse.json()
-        console.log('b')
         Object.assign(returning, json) // add all keys & values to returning
 
         if (!fetchResponse.ok) {

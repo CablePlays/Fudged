@@ -1,5 +1,32 @@
 @import "../global";
 
+$breakpoint-a: 700px;
+$breakpoint-b: 1300px;
+$general-gap: 32px;
+
+@mixin card($color-card, $color-price) {
+    background-color: $color-card;
+    border-radius: 4px;
+    box-shadow: 4px 4px 8px rgb(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    height: 480px;
+    padding: 32px;
+    position: relative;
+    text-align: center;
+    width: 300px;
+
+    img {
+        width: 100%;
+    }
+
+    .price {
+        color: $color-price;
+        font-weight: 700;
+        margin-top: 20px;
+    }
+}
+
 .section-a {
     background-color: $color-tertiary-400;
     box-shadow: 0 4px 8px rgb(0, 0, 0, 0.3);
@@ -32,46 +59,77 @@
 }
 
 .section-b {
-    align-items: center;
     display: flex;
-    height: calc(100vh - $header-height);
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: $general-gap;
+    justify-content: center;
+    padding: $general-gap;
 
     .item {
-        background-color: $color-tertiary-400;
-        border-radius: 2px;
-        box-shadow: 4px 4px 8px rgb(0, 0, 0, 0.3);
-        display: flex;
-        flex-direction: column;
-        height: 80%;
-        padding: 16px;
-        width: 21%;
-
-        a {
-            margin: 20px auto 4px auto;
-            width: min-content;
-        }
-
-        img {
-            height: 100%;
-            margin: 20px auto 0 auto;
-            max-width: 100%;
-        }
-
-        .line {
-            border-top: 2px solid rgb(0, 0, 0, 0.5);
-            margin-top: 20px;
-        }
-
-        .price,
-        .weight {
-            margin-top: 20px;
-        }
+        @include card($color-tertiary-400, white);
     }
 }
 
 .section-c {
-    background-color: $color-secondary-400;
+    background-color: $color-tertiary-400;
     box-shadow: 0 -4px 8px rgb(0, 0, 0, 0.3);
-    height: calc(100vh - $header-height);
+    display: flex;
+    justify-content: center;
+
+    .items {
+        padding: $general-gap;
+
+        .eggs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: $general-gap;
+            justify-content: center;
+        }
+
+        .food {
+            display: flex;
+            flex-wrap: wrap;
+            gap: $general-gap;
+            justify-content: center;
+        }
+
+        .item {
+            @include card(white, $color-primary-400);
+        }
+
+        .line {
+            border-top: 2px solid rgb(0, 0, 0, 0.5);
+            margin: $general-gap 0 $general-gap 10%;
+            width: 80%;
+        }
+    }
+}
+
+.section-yoco {
+    border: 5px solid $color-yoco-blue;
+    border-radius: 4px;
+    display: grid;
+    gap: 40px 20px;
+    justify-items: center;
+    margin: 10px;
+    padding: 16px;
+    text-align: center;
+
+    @media screen and (min-width: 700px) {
+        grid-template-columns: 1fr 2fr;
+        justify-items: initial;
+        text-align: start;
+    }
+
+    .subsection-a img {
+        cursor: pointer;
+        display: block;
+        height: 100px;
+    }
+
+    .subsection-b {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
