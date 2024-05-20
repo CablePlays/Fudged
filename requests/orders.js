@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
     fulfilled = (fulfilled == null) ? null : (fulfilled === 'true')
     userId = parseInt(userId)
 
-    const orders = getDatabase().get(database.PATH_ORDERS).filter(order =>
+    let orders = getDatabase().get(database.PATH_ORDERS) ?? []
+    orders = orders.filter(order =>
         (isNaN(userId) || order.userId === userId) && (fulfilled == null || order.fulfilled === fulfilled))
 
     res.res(200, { orders })

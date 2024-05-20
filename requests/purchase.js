@@ -93,6 +93,7 @@ function addPurchase(userId, itemId, quantity) {
 }
 
 router.post('/yoco-webhook', (req, res) => {
+    console.log('a')
     const { body, headers, rawBody } = req
     const { itemId, quantity, userId } = body.payload.metadata
 
@@ -104,9 +105,10 @@ router.post('/yoco-webhook', (req, res) => {
         res.res(401)
         return
     }
+    console.log('b')
 
     const signedContent = `${id}.${timestamp}.${rawBody}`
-    const secretBytes = Buffer.from(secret.split('_')[1], 'base64')
+    const secretBytes = Buffer.from(config.webhookSecret.split('_')[1], 'base64')
 
     const expectedSignature = crypto
         .createHmac('sha256', secretBytes)
@@ -120,6 +122,7 @@ router.post('/yoco-webhook', (req, res) => {
         res.send(403)
         return
     }
+    console.log('c')
 
     // handle purchase
 
@@ -127,6 +130,8 @@ router.post('/yoco-webhook', (req, res) => {
         res.res(204)
         return
     }
+    console.log('d')
+    console.log(body.payload.metadata)
 
     addPurchase(userId, itemId, quantity)
     res.res(204)
