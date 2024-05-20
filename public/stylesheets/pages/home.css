@@ -72,16 +72,48 @@ button.primary.disabled {
   background-color: rgb(133, 117, 29);
 }
 
+.hamburger-icon {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  max-width: 38px;
+  min-width: 38px;
+  row-gap: 8px;
+}
+.hamburger-icon span {
+  background-color: rgb(150, 150, 150);
+  border-radius: 3px;
+  height: 4px;
+  transition: 0.25s;
+  width: 100%;
+}
+.hamburger-icon.active span:nth-child(1) {
+  transform: rotateZ(-45deg) translateY(9px) translateX(-8px);
+}
+.hamburger-icon.active span:nth-child(2) {
+  width: 0;
+}
+.hamburger-icon.active span:nth-child(3) {
+  transform: rotateZ(45deg) translateY(-9px) translateX(-8px);
+}
+
 header {
+  align-items: center;
   background-color: rgb(241, 209, 27);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: space-between;
   height: 65px;
-  padding: 0 32px 0 64px;
+  padding: 0 32px 0 32px;
   position: fixed;
   width: 100%;
   z-index: 100;
+}
+@media screen and (min-width: 400px) {
+  header {
+    padding: 0 32px 0 64px;
+  }
 }
 header .account {
   align-items: center;
@@ -99,12 +131,24 @@ header .account .picture {
   height: 40px;
   width: 40px;
 }
+header #header-hamburger-icon span {
+  background-color: black;
+}
+@media screen and (min-width: 850px) {
+  header #header-hamburger-icon {
+    display: none;
+  }
+}
 header #header-links {
-  align-items: center;
   -moz-column-gap: 20px;
        column-gap: 20px;
-  display: flex;
+  display: none;
   height: 100%;
+}
+@media screen and (min-width: 850px) {
+  header #header-links {
+    display: flex;
+  }
 }
 header #header-links a {
   align-items: center;
@@ -136,8 +180,14 @@ header #header-links a.selected .underline {
 
 .section-a {
   display: grid;
-  grid-template-columns: 45% 55%;
-  height: calc(100vh - 65px);
+  grid-template-rows: 300px 400px;
+}
+@media screen and (min-width: 800px) {
+  .section-a {
+    grid-template-columns: 45% 55%;
+    grid-template-rows: initial;
+    height: calc(100vh - 65px);
+  }
 }
 .section-a .subsection-a {
   background-image: url("../../assets/background.jpg");
@@ -153,6 +203,11 @@ header #header-links a.selected .underline {
   justify-content: center;
   width: 100%;
 }
+@media screen and (max-width: 400px) {
+  .section-a .subsection-a .overlay {
+    transform: scale(0.95);
+  }
+}
 .section-a .subsection-a .overlay .row {
   align-items: center;
   display: flex;
@@ -166,6 +221,14 @@ header #header-links a.selected .underline {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.section-a .subsection-b h1 {
+  margin-bottom: 40px;
+}
+@media screen and (min-width: 800px) {
+  .section-a .subsection-b h1 {
+    margin-bottom: 60px;
+  }
 }
 .section-a .subsection-b #shop-items {
   height: 240px;

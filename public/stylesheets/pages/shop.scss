@@ -1,8 +1,7 @@
 @import "../global";
 
-$breakpoint-a: 700px;
-$breakpoint-b: 1300px;
-$general-gap: 32px;
+$item-container-margin: 32px;
+$item-gap: 64px;
 
 @mixin card($color-card, $color-price) {
     background-color: $color-card;
@@ -16,8 +15,14 @@ $general-gap: 32px;
     text-align: center;
     width: 300px;
 
+    a {
+        margin-top: 40px;
+    }
+
     img {
-        width: 100%;
+        display: block;
+        margin: 20px 0 0 10%;
+        width: 80%;
     }
 
     .price {
@@ -31,9 +36,23 @@ $general-gap: 32px;
     background-color: $color-tertiary-400;
     box-shadow: 0 4px 8px rgb(0, 0, 0, 0.3);
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    height: calc(80vh - $header-height);
+    min-height: 500px;
     position: relative;
+
+    img {
+        display: block;
+        height: 250px;
+    }
+
+    @media screen and (min-width: 650px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (min-width: 850px) {
+        img {
+            height: 450px;
+        }
+    }
 
     .subsection-a {
         align-items: center;
@@ -47,14 +66,7 @@ $general-gap: 32px;
         align-items: center;
         display: flex;
         justify-content: center;
-
-        .img-div {
-            aspect-ratio: 1 / 1;
-            background-image: url('../../assets/shop/fudge-jar.png');
-            background-size: cover;
-            display: inline-block;
-            height: 100%;
-        }
+        padding-right: 16px;
     }
 }
 
@@ -63,9 +75,9 @@ $general-gap: 32px;
 .section-d {
     display: flex;
     flex-wrap: wrap;
-    gap: $general-gap;
+    gap: $item-gap;
     justify-content: center;
-    padding: $general-gap;
+    padding: $item-gap $item-container-margin;
 }
 
 .section-b,
@@ -88,7 +100,7 @@ $general-gap: 32px;
     border: 5px solid $color-yoco-blue;
     border-radius: 4px;
     display: grid;
-    gap: 40px 20px;
+    gap: 20px;
     justify-items: center;
     margin: 10px;
     padding: 16px;

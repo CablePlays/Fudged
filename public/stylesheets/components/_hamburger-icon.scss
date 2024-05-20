@@ -1,0 +1,31 @@
+.hamburger-icon {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    max-width: 38px;
+    min-width: 38px;
+    row-gap: 8px;
+
+    span {
+        background-color: rgb(150, 150, 150);
+        border-radius: 3px;
+        height: 4px;
+        transition: 0.25s;
+        width: 100%;
+    }
+
+    &.active {
+        span:nth-child(1) {
+            transform: rotateZ(-45deg) translateY(9px) translateX(-8px);
+        }
+
+        span:nth-child(2) {
+            width: 0;
+        }
+
+        span:nth-child(3) {
+            transform: rotateZ(45deg) translateY(-9px) translateX(-8px);
+        }
+    }
+}

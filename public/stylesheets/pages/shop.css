@@ -72,16 +72,48 @@ button.primary.disabled {
   background-color: rgb(133, 117, 29);
 }
 
+.hamburger-icon {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  max-width: 38px;
+  min-width: 38px;
+  row-gap: 8px;
+}
+.hamburger-icon span {
+  background-color: rgb(150, 150, 150);
+  border-radius: 3px;
+  height: 4px;
+  transition: 0.25s;
+  width: 100%;
+}
+.hamburger-icon.active span:nth-child(1) {
+  transform: rotateZ(-45deg) translateY(9px) translateX(-8px);
+}
+.hamburger-icon.active span:nth-child(2) {
+  width: 0;
+}
+.hamburger-icon.active span:nth-child(3) {
+  transform: rotateZ(45deg) translateY(-9px) translateX(-8px);
+}
+
 header {
+  align-items: center;
   background-color: rgb(241, 209, 27);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: space-between;
   height: 65px;
-  padding: 0 32px 0 64px;
+  padding: 0 32px 0 32px;
   position: fixed;
   width: 100%;
   z-index: 100;
+}
+@media screen and (min-width: 400px) {
+  header {
+    padding: 0 32px 0 64px;
+  }
 }
 header .account {
   align-items: center;
@@ -99,12 +131,24 @@ header .account .picture {
   height: 40px;
   width: 40px;
 }
+header #header-hamburger-icon span {
+  background-color: black;
+}
+@media screen and (min-width: 850px) {
+  header #header-hamburger-icon {
+    display: none;
+  }
+}
 header #header-links {
-  align-items: center;
   -moz-column-gap: 20px;
        column-gap: 20px;
-  display: flex;
+  display: none;
   height: 100%;
+}
+@media screen and (min-width: 850px) {
+  header #header-links {
+    display: flex;
+  }
 }
 header #header-links a {
   align-items: center;
@@ -138,9 +182,22 @@ header #header-links a.selected .underline {
   background-color: rgb(187, 142, 100);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  height: calc(80vh - 65px);
+  min-height: 500px;
   position: relative;
+}
+.section-a img {
+  display: block;
+  height: 250px;
+}
+@media screen and (min-width: 650px) {
+  .section-a {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 850px) {
+  .section-a img {
+    height: 450px;
+  }
 }
 .section-a .subsection-a {
   align-items: center;
@@ -153,13 +210,7 @@ header #header-links a.selected .underline {
   align-items: center;
   display: flex;
   justify-content: center;
-}
-.section-a .subsection-b .img-div {
-  aspect-ratio: 1/1;
-  background-image: url("../../assets/shop/fudge-jar.png");
-  background-size: cover;
-  display: inline-block;
-  height: 100%;
+  padding-right: 16px;
 }
 
 .section-b,
@@ -167,9 +218,9 @@ header #header-links a.selected .underline {
 .section-d {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: 64px;
   justify-content: center;
-  padding: 32px;
+  padding: 64px 32px;
 }
 
 .section-b .item,
@@ -185,9 +236,15 @@ header #header-links a.selected .underline {
   text-align: center;
   width: 300px;
 }
+.section-b .item a,
+.section-d .item a {
+  margin-top: 40px;
+}
 .section-b .item img,
 .section-d .item img {
-  width: 100%;
+  display: block;
+  margin: 20px 0 0 10%;
+  width: 80%;
 }
 .section-b .item .price,
 .section-d .item .price {
@@ -212,8 +269,13 @@ header #header-links a.selected .underline {
   text-align: center;
   width: 300px;
 }
+.section-c .item a {
+  margin-top: 40px;
+}
 .section-c .item img {
-  width: 100%;
+  display: block;
+  margin: 20px 0 0 10%;
+  width: 80%;
 }
 .section-c .item .price {
   color: rgb(187, 142, 100);
@@ -225,7 +287,7 @@ header #header-links a.selected .underline {
   border: 5px solid rgb(0, 169, 224);
   border-radius: 4px;
   display: grid;
-  gap: 40px 20px;
+  gap: 20px;
   justify-items: center;
   margin: 10px;
   padding: 16px;

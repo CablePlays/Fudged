@@ -1,13 +1,20 @@
+$header-breakpoint: 850px;
+
 header {
+    align-items: center;
     background-color: $color-primary-400;
     box-shadow: 0 0 8px rgb(0, 0, 0, 0.5);
     display: flex;
     justify-content: space-between;
     height: $header-height;
-    padding: 0 32px 0 64px;
+    padding: 0 32px 0 32px;
     position: fixed;
     width: 100%;
     z-index: 100;
+
+    @media screen and (min-width: 400px) {
+        padding: 0 32px 0 64px;
+    }
 
     .account {
         align-items: center;
@@ -27,11 +34,24 @@ header {
         }
     }
 
+    #header-hamburger-icon {
+        span {
+            background-color: black;
+        }
+
+        @media screen and (min-width: $header-breakpoint) {
+            display: none;
+        }
+    }
+
     #header-links {
-        align-items: center;
         column-gap: 20px;
-        display: flex;
+        display: none;
         height: 100%;
+
+        @media screen and (min-width: $header-breakpoint) {
+            display: flex;
+        }
 
         a {
             align-items: center;

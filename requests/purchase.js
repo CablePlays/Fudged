@@ -24,7 +24,7 @@ router.post('/', requireSignedIn, async (req, res) => {
     }
 
     const totalPrice = price * quantity * 100
-    const { redirectUrl } = await fetch('https://payments.yoco.com/api/checkouts', {
+    const response = await fetch('https://payments.yoco.com/api/checkouts', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -33,9 +33,9 @@ router.post('/', requireSignedIn, async (req, res) => {
         body: JSON.stringify({
             amount: totalPrice,
             currency: 'ZAR',
-            cancelUrl: 'http://localhost/pay/cancel',
-            successUrl: 'http://localhost/pay/success',
-            failureUrl: 'http://localhost/pay/failure',
+            cancelUrl: `${config.host}/pay/cancel`,
+            successUrl: `${config.host}/pay/success`,
+            failureUrl: `${config.host}/pay/failure`,
             lineItems: [
                 {
                     displayName: name,
@@ -51,7 +51,14 @@ router.post('/', requireSignedIn, async (req, res) => {
                 userId
             }
         })
-    }).then(res => res.json())
+    })
+
+    if (!response.ok) {
+        res.res(500)
+        return
+    }
+
+    const { redirectUrl } = await response.json()
 
     res.res(200, { url: redirectUrl })
 })
@@ -88,24 +95,22 @@ function addPurchase(userId, itemId, quantity) {
     // mass
 
     const totalMass = mass * quantity
-    db.set(database.PATH_MASS_SOLD, db.get((database.PATH_MASS_SOLD) ?? 0) + totalMass)
+    db.set(database.PATH_MASS_SOLD, (db.get(database.PATH_MASS_SOLD) ?? 0) + totalMass)
     userDb.set(database.PATH_USER_GRAMS, (userDb.get(database.PATH_USER_GRAMS) ?? 0) + totalMass)
 }
 
 router.post('/yoco-webhook', (req, res) => {
-    console.log('a')
     const { body, headers, rawBody } = req
     const { itemId, quantity, userId } = body.payload.metadata
 
     const id = headers['webhook-id']
     const timestamp = headers['webhook-timestamp']
 
-    if (Date.now() - parseInt(timestamp) > 3 * 60) {
+    if (Date.now() - parseInt(timestamp) * 1000 > 3 * 60 * 1000) {
         // possible replay attack
         res.res(401)
         return
     }
-    console.log('b')
 
     const signedContent = `${id}.${timestamp}.${rawBody}`
     const secretBytes = Buffer.from(config.webhookSecret.split('_')[1], 'base64')
@@ -122,7 +127,6 @@ router.post('/yoco-webhook', (req, res) => {
         res.send(403)
         return
     }
-    console.log('c')
 
     // handle purchase
 
@@ -130,8 +134,6 @@ router.post('/yoco-webhook', (req, res) => {
         res.res(204)
         return
     }
-    console.log('d')
-    console.log(body.payload.metadata)
 
     addPurchase(userId, itemId, quantity)
     res.res(204)

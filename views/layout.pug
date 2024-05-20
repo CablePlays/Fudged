@@ -2,6 +2,10 @@ extends head
 
 block body
     header
+        #header-hamburger-icon.hamburger-icon
+            span
+            span
+            span
         #header-links
             a(href='/') Home
                 .underline
@@ -32,6 +36,15 @@ block body
             }[location.pathname]
 
             if (selectedLink != null) byId('header-links').children[selectedLink].classList.add('selected')
+
+            const headerHamburgerIcon = byId('header-hamburger-icon')
+            headerHamburgerIcon.addEventListener('click', () => {
+                if (headerHamburgerIcon.classList.contains('active')) {
+                    headerHamburgerIcon.classList.remove('active')
+                } else {
+                    headerHamburgerIcon.classList.add('active')
+                }
+            })
 
     .header-spacer
     

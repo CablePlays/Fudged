@@ -6,13 +6,12 @@ async function startShopItemsAnimation() {
     const shopItems = byId('shop-items')
     const viewport = byId('viewport')
 
-    const moveSpeed = 0.03
-    const cooldownTime = 1000
+    const moveSpeed = 0.08
+    const cooldownTime = 500
 
     const width = viewport.clientWidth
 
     viewport.style.left = '0'
-    await new Promise(r => setTimeout(r, cooldownTime))
 
     while (true) {
         const moveDistance = width - shopItems.clientWidth
