@@ -1,0 +1,19 @@
+extends layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/item.css')
+    script(src='/javascripts/pages/item.js')
+
+block content
+    .view
+        .box
+            h1 Item
+            h2= name
+            p= price
+            p#error.invisible You cannot afford this item!
+            button#proceed-button.primary.invisible Purchase
+            a#back.primary.invisible(href='/shop') Back To Shop
+
+block script
+    script.
+        checkBalance(#{user.grams})

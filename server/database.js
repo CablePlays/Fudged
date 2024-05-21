@@ -57,6 +57,7 @@ export function newUser(email) {
 
 const PATH_USER_GRADE = 'grade'
 const PATH_USER_GRAMS = 'grams'
+const PATH_USER_INVENTORY = 'inventory'
 const PATH_USER_NAME = 'name'
 const PATH_USER_PHONE_NUMBER = 'phoneNumber'
 const PATH_USER_PICTURE = 'picture'
@@ -102,6 +103,7 @@ export default {
 
     PATH_USER_GRADE,
     PATH_USER_GRAMS,
+    PATH_USER_INVENTORY,
     PATH_USER_NAME,
     PATH_USER_PHONE_NUMBER,
     PATH_USER_PICTURE,

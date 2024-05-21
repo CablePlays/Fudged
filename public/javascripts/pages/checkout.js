@@ -1,4 +1,4 @@
-const itemId = parseInt(window.location.pathname.split('/')[2])
+const itemId = window.location.pathname.split('/')[2]
 let quantity = 1
 
 function getAmountDecreaseButton() {

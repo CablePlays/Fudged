@@ -2,6 +2,9 @@ import express from 'express'
 import cookies from '../server/cookies.js'
 import database, { getDatabase, getUser, getUserInfo, isSigninValid } from '../server/database.js'
 import { requireSignedIn } from './middleware.js'
+import { ITEMS } from '../server/general.js'
+
+import itemRouter from './item.js'
 
 const router = express.Router()
 
@@ -46,6 +49,7 @@ async function advancedRender(req, res, path, statusCode = 200) {
 
 router.use('/', (req, res, next) => { // provide advanced render, placeholders & titles related
     res.placeholders = {}
+    res.placeholders.loading = 'Loading...'
 
     const defaultTitle = 'Dogwave Fudge'
     res.title = defaultTitle
@@ -77,14 +81,16 @@ router.get('/', (req, res) => {
 router.get('/checkout/:itemId', requireSignedIn, (req, res) => {
     const { params } = req
     const { placeholders } = res
-    const itemId = parseInt(params.itemId)
+    const { itemId } = params
 
-    if (![0, 1, 2].includes(itemId)) {
+    const item = ITEMS[itemId]
+
+    if (item == null) {
         res.redirect('/shop')
         return
     }
 
-    placeholders.item = ['Packet', 'Jar', 'Batch'][itemId]
+    placeholders.item = item.name
 
     res.setTitle('Checkout')
     res.ren('checkout')
@@ -126,6 +132,13 @@ router.get('/tab', requireSignedIn, (req, res) => {
 
     res.setTitle('Tab')
     res.ren('tab')
+})
+
+router.use('/item', itemRouter)
+
+router.get('*', (req, res) => {
+    res.setTitle('404')
+    res.ren('errors/not-found')
 })
 
 export default router

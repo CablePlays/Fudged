@@ -7,6 +7,9 @@
     },
     "purchase": {
         "POST": "Request purchase link",
+        "inventory": {
+            "POST": "Purchase inventory item"
+        },
         "yoco": {
             "POST": "Yoco payment webhook endpoint"
         }

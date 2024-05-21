@@ -3,7 +3,7 @@ import express from 'express'
 import config from '../config.json' assert { type: 'json' }
 import { requireSignedIn } from './middleware.js'
 import database, { getDatabase, getUser, isUser } from '../server/database.js'
-import { ITEMS } from '../server/general.js'
+import { INVENTORY_ITEMS, ITEMS } from '../server/general.js'
 
 const router = express.Router()
 
@@ -136,6 +136,35 @@ router.post('/yoco-webhook', (req, res) => {
     }
 
     addPurchase(userId, itemId, quantity)
+    res.res(204)
+})
+
+router.post('/inventory', requireSignedIn, (req, res) => {
+    const { body, userId } = req
+    const { itemId } = body
+
+    const item = INVENTORY_ITEMS[itemId]
+
+    if (item == null) {
+        res.res(400, 'invalid_item')
+        return
+    }
+
+    const { price } = item
+    const userDb = getUser(userId)
+    const balance = userDb.get(database.PATH_USER_GRAMS) ?? 0
+
+    if (balance < price) {
+        res.res(401, 'insufficient_balance')
+        return
+    }
+
+    userDb.set(database.PATH_USER_GRAMS, balance - price)
+
+    const path = `${database.PATH_USER_INVENTORY}.${itemId}`
+    const currentQuantity = userDb.get(path) ?? 0
+    userDb.set(path, currentQuantity + 1)
+
     res.res(204)
 })
 

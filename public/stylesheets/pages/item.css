@@ -189,30 +189,10 @@ header #header-links a.selected .underline {
   border: 2px solid black;
   display: flex;
   flex-direction: column;
+  row-gap: 20px;
   padding: 32px;
   width: 350px;
 }
-.view .box .amount-container {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  width: 150px;
-}
-.view .box .amount-container button {
-  font-size: 20px;
-  height: 30px;
-  width: 30px;
-}
-.view .box .amount-container #amount-decrease {
-  left: 0;
-  position: absolute;
-}
-.view .box .amount-container #amount-increase {
-  position: absolute;
-  right: 0;
-}
-.view .box .info {
-  font-size: 12px;
-  text-align: center;
+.view .box #error {
+  color: rgb(165, 42, 42);
 }

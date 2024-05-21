@@ -1,21 +1,38 @@
-const ITEMS = {
-    0: {
-        mass: 50,
-        max: 20,
-        name: 'Packet',
-        price: 12
+const INVENTORY_ITEMS = {
+    brownEgg: {
+        name: 'Brown Egg',
+        price: 150
     },
-    1: {
-        mass: 1000,
-        max: 2,
-        name: 'Jar',
-        price: 100
+    whiteEgg: {
+        name: 'White Egg',
+        price: 150
     },
     2: {
         mass: 1500,
         max: 1,
         name: 'Batch',
         price: 200
+    }
+}
+
+const ITEMS = {
+    batch: {
+        mass: 1500,
+        max: 1,
+        name: 'Batch',
+        price: 200
+    },
+    jar: {
+        mass: 1000,
+        max: 2,
+        name: 'Jar',
+        price: 100
+    },
+    packet: {
+        mass: 50,
+        max: 20,
+        name: 'Packet',
+        price: 12
     }
 }
 

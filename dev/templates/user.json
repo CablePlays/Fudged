@@ -6,5 +6,12 @@
     "picture": "user profile picture",
     "sessionToken": "user session token",
     "surname": "user surname",
-    "tab": "amount owing in Rand"
+    "tab": "amount owing in Rand",
+    "inventory": {
+        "brownEgg": 0,
+        "whiteEgg": 0,
+        "basicDogFood": 0,
+        "buffedDogFood": 0,
+        "primeDogFood": 0
+    }
 }

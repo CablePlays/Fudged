@@ -1,0 +1,10 @@
+extends layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/generic.css')
+    script(src='/javascripts/pages/item-purchased.js')
+
+block content
+    .plrt16
+        h1 You Purchased #{item}
+        p#info
