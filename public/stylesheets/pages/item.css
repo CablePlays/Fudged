@@ -196,3 +196,6 @@ header #header-links a.selected .underline {
 .view .box #error {
   color: rgb(165, 42, 42);
 }
+.view #display-image {
+  height: 120px;
+}

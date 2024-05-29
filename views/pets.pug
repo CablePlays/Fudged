@@ -5,4 +5,8 @@ block assets
     script(src='/javascripts/pages/pets.js')
 
 block content
-    #pets-container
+    .view
+        #pets-container
+        .inventory
+            #items
+                p#inventory-loading= loading

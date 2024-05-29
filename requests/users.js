@@ -39,4 +39,10 @@ userRouter.put('/', requireSelf, (req, res) => {
     res.res(204)
 })
 
+userRouter.get('/inventory', requireSelf, (req, res) => {
+    const { targetUserId } = req
+    const inventory = getUser(targetUserId).get(database.PATH_USER_INVENTORY) ?? {}
+    res.res(200, { inventory })
+})
+
 export default router

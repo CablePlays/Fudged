@@ -1,87 +1,184 @@
+const DROPZONE_HOVER_CLASS = 'dropzone-hover'
+let draggingItemId
+
+const dropItemFunctions = {}
+
 onLoad(() => {
-    createPet('blue')
-    createPet('red')
-    createPixelArtPet()
+    loadInventory()
+    setupPetsContainerListeners()
 })
 
 function getPetsContainer() {
     return byId('pets-container')
 }
 
-function createPixelArt(resX, resY, pixelSize, pixels) {
-    const canvas = createElement('div', { c: 'pixel-art' })
-    canvas.style.height = `${resY * pixelSize}px`
-    canvas.style.width = `${resX * pixelSize}px`
+async function loadInventory() {
+    const itemsContainer = byId('items')
+    const { inventory: items } = await getRequest(`/users/${getUserId()}/inventory`)
 
-    for (let i = 0; i < resX * resY; i++) {
-        const pixel = createElement('div', { p: canvas })
-        pixel.style.height = pixelSize + 'px'
-        pixel.style.width = pixelSize + 'px'
-        pixel.style['background-color'] = pixels[i]
-    }
+    byId('inventory-loading').remove()
 
-    return canvas
-}
+    for (let itemId in items) {
+        const item = INVENTORY_ITEMS[itemId]
+        let amount = items[itemId]
 
-function createPixelArtPet() {
-    const pixels = []
+        const itemElement = createElement('div', { c: 'item', p: itemsContainer })
+        const imageElement = createElement('img', { p: itemElement })
+        imageElement.src = item.image
 
-    for (let i = 0; i < 8 * 8; i++) {
-        const r = Math.random()
+        const amountElement = createElement('p', { p: itemElement, t: amount })
+        dropItemFunctions[itemId] = () => {
+            amount--
+            amountElement.innerHTML = amount
 
-        if (r < 1 / 3) {
-            pixels.push('blue')
-        } else if (r < 2 / 3) {
-            pixels.push('red')
-        } else {
-            pixels.push('')
+            if (amount === 0) {
+                itemElement.remove()
+            }
         }
+
+        imageElement.addEventListener('dragstart', e => {
+            draggingItemId = itemId
+        })
+        imageElement.addEventListener('dragend', e => {
+            draggingItemId = null
+        })
     }
-
-    const pet = createPixelArt(8, 8, 10, pixels)
-    pet.classList.add('pet')
-
-    getPetsContainer().appendChild(pet)
-    applyAI(pet)
 }
 
-function createPet(color) {
-    const pet = createElement('div', { c: 'pet', p: getPetsContainer() });
-    pet.style['background-color'] = color
-
-    applyAI(pet)
-}
-
-function applyAI(element) {
+function setupPetsContainerListeners() {
     const petsContainer = getPetsContainer()
 
-    const petPadding = 16
-    const petSpeed = 50
-    const petSizeX = element.clientWidth
-    const petSizeY = element.clientHeight
-
-    setTimeout(async () => {
-        let x = 0, y = 0
-
-        element.style.left = '0'
-        element.style.top = '0'
-
-        while (true) {
-            let newX = petPadding + Math.random() * (petsContainer.clientWidth - petSizeX - petPadding * 2)
-            let newY = petPadding + Math.random() * (petsContainer.clientHeight - petSizeY - petPadding * 2)
-
-            let distance = Math.sqrt(Math.pow(x - newX, 2) + Math.pow(y - newY, 2))
-            let time = distance / petSpeed
-
-            element.style.transition = time + 's linear'
-            element.style.left = newX + 'px'
-            element.style.top = newY + 'px'
-
-            x = newX
-            y = newY
-
-            const cooldown = 1000 + Math.random() * 2000
-            await new Promise(r => setTimeout(r, time * 1000 + cooldown))
+    petsContainer.addEventListener('dragenter', e => {
+        if (draggingItemId != null) {
+            petsContainer.classList.add(DROPZONE_HOVER_CLASS)
         }
     })
+
+    petsContainer.addEventListener('dragover', e => {
+        e.preventDefault()
+    })
+
+    petsContainer.addEventListener('dragleave', e => {
+        const { fromElement: toElement } = e
+
+        if (!toElement.classList.contains('pet') && toElement !== petsContainer) {
+            petsContainer.classList.remove(DROPZONE_HOVER_CLASS)
+        }
+    })
+
+    petsContainer.addEventListener('drop', e => {
+        if (draggingItemId == null) {
+            return
+        }
+
+        petsContainer.classList.remove(DROPZONE_HOVER_CLASS)
+        dropItemFunctions[draggingItemId]()
+
+        const rect = petsContainer.getBoundingClientRect()
+        const posX = e.clientX - rect.left
+        const posY = e.clientY - rect.top
+
+        const { petId } = INVENTORY_ITEMS[draggingItemId]
+        const pet = new Pet(petId)
+        pet.setAge(50)
+        pet.setPosition(posX - pet.element.clientWidth / 2, posY - pet.element.clientHeight / 2)
+    })
+}
+
+let test
+setTimeout(() => {
+    test = new Pet('brownDog')
+}, 100)
+
+class Pet {
+    #ageData
+    #animationChecker
+    #idle = true
+
+    constructor(petId) {
+        this.id = petId
+        this.element = createElement('div', { c: 'pet', p: getPetsContainer() })
+
+        this.setAge(0)
+        this.applyAi()
+    }
+
+    setAge(age) {
+        const { ages } = PETS[this.id]
+        let usingAge
+
+        for (let ageKey in ages) {
+            if (usingAge == null || age >= ageKey && ageKey > usingAge) {
+                usingAge = ageKey
+            }
+        }
+
+        this.#ageData = ages[usingAge]
+        this.#setIdleAnimation()
+    }
+
+    #setIdleAnimation(idle = this.#idle) {
+        this.#idle = idle
+
+        if (idle) {
+            this.#animationChecker = null
+            this.element.style['background-color'] = this.#ageData.idleImage
+        } else {
+            setTimeout(async () => {
+                const animationChecker = [] // used to check if animation is cancelled
+                this.#animationChecker = animationChecker
+                const frames = this.#ageData.moveAnimation
+
+                for (let i = 0; this.#animationChecker === animationChecker; i++) {
+                    if (i >= frames.length) i = 0 // back to first frame
+
+                    const { image, cooldown } = frames[i]
+                    this.element.style['background-color'] = image
+
+                    await new Promise(r => setTimeout(r, cooldown))
+                }
+            })
+        }
+    }
+
+    applyAi() {
+        const petsContainer = getPetsContainer()
+        const petPadding = -50
+
+        this.setPosition(0, 0) // ensure there is smooth transition
+
+        setTimeout(async () => {
+            while (true) {
+                const { speed } = this.#ageData
+
+                if (speed > 0) {
+                    const [posX, posY] = this.getPosition()
+                    const newX = petPadding + Math.random() * (petsContainer.clientWidth - this.element.clientWidth - petPadding * 2)
+                    const newY = petPadding + Math.random() * (petsContainer.clientHeight - this.element.clientHeight - petPadding * 2)
+
+                    const distance = Math.sqrt(Math.pow(posX - newX, 2) + Math.pow(posY - newY, 2))
+                    const time = distance / speed
+
+                    this.#setIdleAnimation(false)
+                    this.setPosition(newX, newY, time)
+                    await new Promise(r => setTimeout(r, time * 1000))
+                }
+
+                this.#setIdleAnimation(true)
+                await new Promise(r => setTimeout(r, 1000 + Math.random() * 4000))
+            }
+        })
+    }
+
+    getPosition() {
+        const containerRect = getPetsContainer().getBoundingClientRect()
+        const petRect = this.element.getBoundingClientRect()
+        return [petRect.left - containerRect.left, petRect.top - containerRect.top]
+    }
+
+    setPosition(x, y, transitionTime = 0) {
+        this.element.style.transition = `left ${transitionTime}s linear, top ${transitionTime}s linear`
+        this.element.style.left = `${x}px`
+        this.element.style.top = `${y}px`
+    }
 }

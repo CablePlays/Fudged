@@ -16,7 +16,10 @@
     },
     "users": {
         ":user": {
-            "PUT": "Update user info"
+            "PUT": "Update user info",
+            "inventory": {
+                "GET": "Get inventory items of a user"
+            }
         }
     }
 }

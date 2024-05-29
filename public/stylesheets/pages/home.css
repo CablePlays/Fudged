@@ -178,6 +178,20 @@ header #header-links a.selected .underline {
   height: 65px;
 }
 
+.test {
+  background-color: red;
+  height: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.test div {
+  background-color: blue;
+  height: 80px;
+  width: 80px;
+}
+
 .section-a {
   display: grid;
   grid-template-rows: 300px 400px;

@@ -178,15 +178,56 @@ header #header-links a.selected .underline {
   height: 65px;
 }
 
-#pets-container {
-  height: calc(100vh - 65px);
-  overflow: hidden;
+.inventory {
+  background-color: rgb(187, 142, 100);
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+.inventory .item {
+  border: 2px solid black;
+  border-radius: 2px;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 80px;
+  padding: 4px;
   position: relative;
+  vertical-align: top;
+  width: 80px;
+}
+.inventory .item img {
+  height: 100%;
   width: 100%;
 }
+.inventory .item p {
+  bottom: 0;
+  font-weight: 700;
+  position: absolute;
+  right: 5px;
+}
+.inventory #items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+}
+
+.view {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  height: calc(100vh - 65px);
+}
+
+#pets-container {
+  background-color: rgb(100, 100, 100);
+  overflow: hidden;
+  position: relative;
+}
+#pets-container.dropzone-hover {
+  background-color: rgb(150, 150, 150);
+}
 #pets-container .pet {
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
   position: absolute;
 }
 #pets-container .pixel-art {

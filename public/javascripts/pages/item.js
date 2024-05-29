@@ -1,5 +1,10 @@
 const itemId = window.location.pathname.split('/')[2]
 
+onLoad(() => {
+    byId('display-image').src = INVENTORY_ITEMS[itemId].image
+    handleProceedButton()
+})
+
 function getItemDetails() {
     return INVENTORY_ITEMS[itemId]
 }
@@ -36,7 +41,3 @@ function handleProceedButton() {
         }
     })
 }
-
-onLoad(() => {
-    handleProceedButton()
-})

@@ -1,17 +1,15 @@
 const INVENTORY_ITEMS = {
     brownEgg: {
+        image: '/assets/inventory/brown-egg.png',
         name: 'Brown Egg',
+        petId: 'brownDog',
         price: 150
     },
     whiteEgg: {
+        image: '/assets/inventory/white-egg.png',
         name: 'White Egg',
+        petId: 'whiteDog',
         price: 150
-    },
-    2: {
-        mass: 1500,
-        max: 1,
-        name: 'Batch',
-        price: 200
     }
 }
 
@@ -33,6 +31,53 @@ const ITEMS = {
         max: 20,
         name: 'Packet',
         price: 12
+    }
+}
+
+const PETS = { // ages range from 0 - 100
+    brownDog: {
+        ages: {
+            0: {
+                idleImage: 'brown',
+                speed: 0
+            },
+            20: {
+                idleImage: 'brown',
+                moveAnimation: [
+                    {
+                        cooldown: 500,
+                        image: 'maroon'
+                    },
+                    {
+                        cooldown: 500,
+                        image: 'pink'
+                    }
+                ],
+                speed: 50
+            }
+        }
+    },
+    whiteDog: {
+        ages: {
+            0: {
+                idleImage: 'white',
+                speed: 0
+            },
+            20: {
+                idleImage: 'white',
+                moveAnimation: [
+                    {
+                        cooldown: 500,
+                        image: 'gray'
+                    },
+                    {
+                        cooldown: 500,
+                        image: 'black'
+                    }
+                ],
+                speed: 50
+            }
+        }
     }
 }
 

@@ -2,6 +2,21 @@
 
 $section-a-breakpoint: 800px;
 
+.test {
+    background-color: red;
+    height: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;  
+    justify-content: center;
+
+    div {
+        background-color: blue;
+        height: 80px;
+        width: 80px;
+    }
+}
+
 .section-a {
     display: grid;
     grid-template-rows: 300px 400px;
