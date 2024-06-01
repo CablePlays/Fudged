@@ -217,6 +217,17 @@ class Pet {
         if (age === 100) {
             this.element.classList.add('full-grown')
             this.element.addEventListener('click', () => {
+                const [x, y] = this.getPosition()
+                const p = createElement('p', { c: 'floating', p: getPetsContainer(), t: '+1 free packet' })
+                p.style.left = `${x}px`
+                p.style.top = `${y + this.element.clientHeight / 2}px`
+
+                setTimeout(() => {
+                    p.style.opacity = 0
+                    p.style.top = `${y - 200}px`
+                })
+                setTimeout(() => p.remove(), 3000)
+
                 this.element.remove()
                 petObjects.splice(petObjects.indexOf(this), 1)
                 postRequest(`/users/${getUserId()}/pets/${this.id}/claim`)

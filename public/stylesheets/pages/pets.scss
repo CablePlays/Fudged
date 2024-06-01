@@ -1,5 +1,22 @@
 @import "../global";
 
+p.floating {
+    animation: flash 1s infinite;
+    border-radius: 8px;
+    padding: 4px;
+    position: absolute;
+    transition: opacity 3s linear, top 3s linear;
+
+    @keyframes flash {
+        0%, 100% {
+            background-color: $color-gold;
+        }
+        50% {
+            background-color: white;
+        }
+    }
+}
+
 .inventory {
     background-color: $color-tertiary-400;
     box-shadow: 0 0 4px 4px rgb(0, 0, 0, 0.2);
