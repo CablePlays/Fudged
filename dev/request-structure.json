@@ -26,6 +26,9 @@
                 ":petId": {
                     "age": {
                         "POST": "Update age of pet"
+                    },
+                    "claim": {
+                        "POST": "Exchanges this fully grown pet for product"
                     }
                 }
             }

@@ -2,8 +2,8 @@ import crypto from 'crypto'
 import express from 'express'
 import config from '../config.json' assert { type: 'json' }
 import { requireSignedIn } from './middleware.js'
-import database, { getDatabase, getUser, isUser } from '../server/database.js'
-import { INVENTORY_ITEMS, ITEMS } from '../server/general.js'
+import database, { getUser, isUser } from '../server/database.js'
+import { INVENTORY_ITEMS, ITEMS, createOrder } from '../server/general.js'
 
 const router = express.Router()
 
@@ -63,42 +63,6 @@ router.post('/', requireSignedIn, async (req, res) => {
     res.res(200, { url: redirectUrl })
 })
 
-function addPurchase(userId, itemId, quantity) {
-    const db = getDatabase()
-    const userDb = getUser(userId)
-
-    const orders = db.get(database.PATH_ORDERS) ?? []
-    const { mass, price } = ITEMS[itemId]
-
-    // order
-
-    let lastId = -1
-
-    for (let order of orders) {
-        if (order.id > lastId) {
-            lastId = order.id
-        }
-    }
-
-    orders.push({
-        id: lastId + 1,
-        userId,
-        date: new Date().toLocaleDateString(),
-        itemId,
-        quantity,
-        itemPrice: price,
-        fulfilled: false
-    })
-
-    db.set(database.PATH_ORDERS, orders)
-
-    // mass
-
-    const totalMass = mass * quantity
-    db.set(database.PATH_MASS_SOLD, (db.get(database.PATH_MASS_SOLD) ?? 0) + totalMass)
-    userDb.set(database.PATH_USER_GRAMS, (userDb.get(database.PATH_USER_GRAMS) ?? 0) + totalMass)
-}
-
 router.post('/yoco-webhook', (req, res) => {
     const { body, headers, rawBody } = req
     const { itemId, quantity, userId } = body.payload.metadata
@@ -135,7 +99,7 @@ router.post('/yoco-webhook', (req, res) => {
         return
     }
 
-    addPurchase(userId, itemId, quantity)
+    createOrder(userId, itemId, quantity, true)
     res.res(204)
 })
 

@@ -187,7 +187,31 @@ header #header-links a.selected .underline {
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
   z-index: 10;
 }
-.inventory .item {
+.inventory .details {
+  align-items: center;
+  display: flex;
+  padding: 16px 32px;
+}
+.inventory .details div {
+  width: 100%;
+}
+.inventory .details img {
+  height: 80px;
+  margin-right: 20px;
+  width: 80px;
+}
+.inventory .details meter {
+  width: 100%;
+}
+.inventory #items {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-bottom: 2px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px;
+}
+.inventory #items .item {
   border: 2px solid black;
   border-radius: 2px;
   display: inline-block;
@@ -198,27 +222,21 @@ header #header-links a.selected .underline {
   vertical-align: top;
   width: 80px;
 }
-.inventory .item img {
+.inventory #items .item img {
   cursor: grab;
   height: 100%;
   width: 100%;
 }
-.inventory .item p {
+.inventory #items .item p {
   bottom: 0;
   font-weight: 700;
   position: absolute;
   right: 5px;
 }
-.inventory #items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 8px;
-}
 
 .view {
   display: grid;
-  grid-template-columns: 1fr 350px;
+  grid-template-columns: 1fr 300px;
   height: calc(100vh - 65px);
 }
 
@@ -237,7 +255,15 @@ header #header-links a.selected .underline {
 }
 #pets-container .pet.food-hover::before {
   content: "";
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+#pets-container .pet.full-grown:hover::before {
+  cursor: pointer;
+  content: "";
+  background-color: rgba(255, 255, 255, 0.2);
   height: 100%;
   position: absolute;
   width: 100%;

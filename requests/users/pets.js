@@ -1,6 +1,6 @@
 import express from 'express'
 import database, { getUser } from '../../server/database.js'
-import { INVENTORY_ITEMS } from '../../server/general.js'
+import { INVENTORY_ITEMS, createOrder } from '../../server/general.js'
 import { requireSelf } from '../middleware.js'
 
 const router = express.Router()
@@ -54,19 +54,27 @@ router.post('/', requireSelf, (req, res) => {
     res.res(200, { id: petInstanceId })
 })
 
-router.post('/:petId/age', requireSelf, (req, res) => {
-    const { body, params, targetUserId } = req
-    const { itemId } = body
+const petRouter = express.Router()
+
+router.use('/:petId', (req, res, next) => {
+    const { params, targetUserId } = req
     const { petId } = params
 
-    const userDb = getUser(targetUserId)
-    const pets = userDb.get(database.PATH_USER_PETS) ?? {}
+    const pets = getUser(targetUserId).get(database.PATH_USER_PETS) ?? {}
     const pet = pets[petId]
 
     if (pet == null) {
         res.res(404, 'invalid_pet')
         return
     }
+
+    req.petId = petId
+    next()
+}, petRouter)
+
+petRouter.post('/age', requireSelf, (req, res) => {
+    const { body, petId, targetUserId } = req
+    const { itemId } = body
 
     const item = INVENTORY_ITEMS[itemId]
 
@@ -75,6 +83,7 @@ router.post('/:petId/age', requireSelf, (req, res) => {
         return
     }
 
+    const userDb = getUser(targetUserId)
     const path = `${database.PATH_USER_INVENTORY}.${itemId}`
     const amount = userDb.get(path)
 
@@ -84,9 +93,22 @@ router.post('/:petId/age', requireSelf, (req, res) => {
     }
 
     userDb.set(path, amount - 1)
+
+    const pets = userDb.get(database.PATH_USER_PETS) ?? {}
+    const pet = pets[petId]
     const { age = 0 } = pet
+
     pet.age = Math.min(age + item.food, 100)
     userDb.set(`${database.PATH_USER_PETS}.${petId}`, pet)
+
+    res.res(204)
+})
+
+petRouter.post('/claim', requireSelf, (req, res) => {
+    const { petId, targetUserId } = req
+
+    getUser(targetUserId).delete(`${database.PATH_USER_PETS}.${petId}`)
+    createOrder(targetUserId, 'packet', 1, false)
 
     res.res(204)
 })

@@ -5,42 +5,64 @@
     box-shadow: 0 0 4px 4px rgb(0, 0, 0, 0.2);
     z-index: 10;
 
-    .item {
-        border: 2px solid black;
-        border-radius: 2px;
-        display: inline-block;
-        background-color: rgb(255, 255, 255, 0.5);
-        height: 80px;
-        padding: 4px;
-        position: relative;
-        vertical-align: top;
-        width: 80px;
+    .details {
+        align-items: center;
+        display: flex;
+        padding: 16px 32px;
 
-        img {
-            cursor: grab;
-            height: 100%;
+        div {
             width: 100%;
         }
 
-        p {
-            bottom: 0;
-            font-weight: 700;
-            position: absolute;
-            right: 5px;
+        img {
+            height: 80px;
+            margin-right: 20px;
+            width: 80px;
+        }
+
+        meter {
+            width: 100%;
         }
     }
 
     #items {
+        background-color: rgb(255, 255, 255, 0.15);
+        border-bottom: 2px solid black;
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        padding: 8px;
+        padding: 16px;
+
+        .item {
+            border: 2px solid black;
+            border-radius: 2px;
+            display: inline-block;
+            background-color: rgb(255, 255, 255, 0.5);
+            height: 80px;
+            padding: 4px;
+            position: relative;
+            vertical-align: top;
+            width: 80px;
+
+            img {
+                cursor: grab;
+                height: 100%;
+                width: 100%;
+            }
+
+            p {
+                bottom: 0;
+                font-weight: 700;
+                position: absolute;
+                right: 5px;
+            }
+        }
     }
 }
 
 .view {
     display: grid;
-    grid-template-columns: 1fr 350px;
+    grid-template-columns: 1fr 300px;
     height: calc(100vh - $header-height);
 }
 
@@ -60,7 +82,16 @@
 
         &.food-hover::before {
             content: '';
-            background-color: rgb(255, 255, 255, 0.5);
+            background-color: rgb(255, 255, 255, 0.2);
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+
+        &.full-grown:hover::before {
+            cursor: pointer;
+            content: '';
+            background-color: rgb(255, 255, 255, 0.2);
             height: 100%;
             position: absolute;
             width: 100%;

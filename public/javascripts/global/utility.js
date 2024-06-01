@@ -49,6 +49,7 @@ const ITEMS = {
 
 const PETS = { // ages range from 0 - 100
     brownDog: {
+        name: "Brown Dog",
         ages: {
             0: {
                 idleImage: 'brown',
@@ -71,6 +72,7 @@ const PETS = { // ages range from 0 - 100
         }
     },
     whiteDog: {
+        name: "White Dog",
         ages: {
             0: {
                 idleImage: 'rgb(0,0,0)',

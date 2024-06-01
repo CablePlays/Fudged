@@ -9,9 +9,6 @@ router.get('/', (req, res) => {
     fulfilled = (fulfilled == null) ? null : (fulfilled === 'true')
     targetUserId = parseInt(targetUserId)
 
-    console.log(userId)
-    console.log(targetUserId)
-
     if (!admin && targetUserId !== userId) {
         res.res(400, 'not_self')
         return

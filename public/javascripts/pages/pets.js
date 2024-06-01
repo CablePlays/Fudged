@@ -72,8 +72,27 @@ function getPetFromElement(element) {
     return null
 }
 
+function displayPetDetails(pet) {
+    if (pet == null) {
+        setVisible('details-image', false)
+        byId('details-name').innerHTML = null
+        setVisible('details-age-meter', false)
+    } else {
+        const detailsImage = byId('details-image')
+        detailsImage.style['background-color'] = pet.getAgeData().idleImage
+        setVisible(detailsImage)
+
+        byId('details-name').innerHTML = PETS[pet.typeId].name
+
+        byId('details-age-meter').value = pet.getAge()
+        setVisible('details-age-meter')
+    }
+}
+
 function setupPetsContainerListeners() {
     const petsContainer = getPetsContainer()
+
+    window.addEventListener('mouseover', e => displayPetDetails(getPetFromElement(e.target)))
 
     petsContainer.addEventListener('dragenter', e => {
         if (draggingItemId == null) {
@@ -89,6 +108,7 @@ function setupPetsContainerListeners() {
             }
 
             const pet = getPetFromElement(target)
+            displayPetDetails(pet)
 
             if (pet.getAge() < 100) {
                 targetFeedingPet = target
@@ -112,6 +132,7 @@ function setupPetsContainerListeners() {
             if (targetFeedingPet != null) {
                 targetFeedingPet.classList.remove(FOOD_HOVER_CLASS)
                 targetFeedingPet = null
+                displayPetDetails(null)
             }
             if (toElement !== petsContainer) {
                 petsContainer.classList.remove(DROPZONE_HOVER_CLASS)
@@ -192,6 +213,19 @@ class Pet {
 
         this.#ageData = ages[usingAge]
         this.#setIdleAnimation()
+
+        if (age === 100) {
+            this.element.classList.add('full-grown')
+            this.element.addEventListener('click', () => {
+                this.element.remove()
+                petObjects.splice(petObjects.indexOf(this), 1)
+                postRequest(`/users/${getUserId()}/pets/${this.id}/claim`)
+            })
+        }
+    }
+
+    getAgeData() {
+        return this.#ageData
     }
 
     #setIdleAnimation(idle = this.#idle) {

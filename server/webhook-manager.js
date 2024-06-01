@@ -13,7 +13,7 @@ export function createWebhook(name, url) {
             name,
             url
         })
-    }).then(res => res.json()).then(res => console.log(res))
+    }).then(res => res.json()).then(res => console.info(res))
 }
 
 export function getWebhooks() {
@@ -23,7 +23,7 @@ export function getWebhooks() {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${config.yocoPrivateKey}`
         }
-    }).then(res => res.json()).then(res => console.log(res))
+    }).then(res => res.json()).then(res => console.info(res))
 }
 
 export function deleteWebhook(id) {
@@ -33,5 +33,5 @@ export function deleteWebhook(id) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${config.yocoPrivateKey}`
         }
-    }).then(res => res.json()).then(res => console.log(res))
+    }).then(res => res.json()).then(res => console.info(res))
 }
