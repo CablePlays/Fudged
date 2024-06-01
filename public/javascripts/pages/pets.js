@@ -150,7 +150,6 @@ function setupPetsContainerListeners() {
         if (foodAmount != null) {
             if (targetFeedingPet != null) {
                 targetFeedingPet.classList.remove(FOOD_HOVER_CLASS)
-                useItemFunctions[draggingItemId]()
 
                 const pet = getPetFromElement(targetFeedingPet)
                 const { id: petId } = pet
@@ -159,6 +158,7 @@ function setupPetsContainerListeners() {
                     return
                 }
 
+                useItemFunctions[draggingItemId]()
                 pet.setAge(pet.getAge() + foodAmount)
                 postRequest(`/users/${getUserId()}/pets/${petId}/age`, { itemId: draggingItemId })
             }

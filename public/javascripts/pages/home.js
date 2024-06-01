@@ -1,6 +1,13 @@
 onLoad(() => {
+    handleFreeFudgeScroll()
     startShopItemsAnimation()
 })
+
+function handleFreeFudgeScroll() {
+    byId('free-scroll-button').addEventListener('click', () => {
+        byId('free-scroll-target').scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+}
 
 async function startShopItemsAnimation() {
     const shopItems = byId('shop-items')

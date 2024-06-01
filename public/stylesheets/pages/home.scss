@@ -47,14 +47,36 @@ $section-a-breakpoint: 800px;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        position: relative;
+
+        @media screen and (min-width: $section-a-breakpoint) {
+            h1 {
+                margin-bottom: 60px;
+            }
+        }
 
         h1 {
             margin-bottom: 40px;
         }
 
-        @media screen and (min-width: $section-a-breakpoint) {
-            h1 {
-                margin-bottom: 60px;
+        #free-scroll-button {
+            background: none;
+            border: none;
+            border-radius: 4px;
+            bottom: 287px;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px;
+            position: absolute;
+            transition: background-color 0.25s;
+
+            @media screen and (min-width: $section-a-breakpoint) {
+                bottom: 40px;
+                font-size: 16px;
+            }
+
+            &:hover {
+                background-color: rgb(255, 255, 255, 0.1);
             }
         }
 

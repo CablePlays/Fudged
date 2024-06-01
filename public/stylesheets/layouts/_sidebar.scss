@@ -1,0 +1,34 @@
+#links-sidebar {
+    background-color: $color-tertiary-400;
+    box-shadow: 0 0 4px 4px rgb(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    height: 0;
+    left: -300px;
+    overflow: hidden;
+    padding: 8px;
+    position: fixed;
+    row-gap: 8px;
+    top: $header-height;
+    transition: 0.25s;
+    width: 300px;
+    z-index: 90;
+
+    &.visible {
+        left: 0;
+        height: calc(100vh - $header-height);
+    }
+
+    a {
+        background-color: $color-secondary-400;
+        border-radius: 2px;
+        color: white;
+        padding: 16px;
+        text-decoration: none;
+        transition: background-color 0.1s;
+
+        &:hover {
+            background-color: $color-secondary-400-hover;
+        }
+    }
+}

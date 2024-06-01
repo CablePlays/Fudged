@@ -1,5 +1,11 @@
 $header-breakpoint: 850px;
 
+@media screen and (min-width: $header-breakpoint) {
+    #links-sidebar {
+        display: none !important;
+    }
+}
+
 header {
     align-items: center;
     background-color: $color-primary-400;

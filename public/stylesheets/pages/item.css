@@ -102,6 +102,11 @@ button.primary.disabled {
   transform: rotateZ(45deg) translateY(-9px) translateX(-8px);
 }
 
+@media screen and (min-width: 850px) {
+  #links-sidebar {
+    display: none !important;
+  }
+}
 header {
   align-items: center;
   background-color: rgb(241, 209, 27);
@@ -180,6 +185,38 @@ header #header-links a.selected .underline {
 
 .header-spacer {
   height: 65px;
+}
+
+#links-sidebar {
+  background-color: rgb(187, 142, 100);
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: 0;
+  left: -300px;
+  overflow: hidden;
+  padding: 8px;
+  position: fixed;
+  row-gap: 8px;
+  top: 65px;
+  transition: 0.25s;
+  width: 300px;
+  z-index: 90;
+}
+#links-sidebar.visible {
+  left: 0;
+  height: calc(100vh - 65px);
+}
+#links-sidebar a {
+  background-color: rgb(172, 103, 14);
+  border-radius: 2px;
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+  transition: background-color 0.1s;
+}
+#links-sidebar a:hover {
+  background-color: rgb(190, 114, 15);
 }
 
 .view {

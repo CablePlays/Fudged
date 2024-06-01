@@ -47,5 +47,26 @@ block body
             })
 
     .header-spacer
-    
+
+    #links-sidebar
+        a(href='/') Home
+        a(href='/shop') Shop
+        a(href='/orders') Orders
+        a(href='/tab') Tab
+        a(href='/pets') Pets
+        a(href='/details') Details
+
+        script.
+            let _sidebarVisible = false
+
+            byId('header-hamburger-icon').addEventListener('click', () => {
+                _sidebarVisible = !_sidebarVisible
+
+                if (_sidebarVisible) {
+                    byId('links-sidebar').classList.add('visible')
+                } else {
+                    byId('links-sidebar').classList.remove('visible')
+                }
+            })
+
     block content

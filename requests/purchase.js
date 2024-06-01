@@ -11,12 +11,14 @@ router.post('/', requireSignedIn, async (req, res) => {
     const { body, userId } = req
     const { itemId, quantity } = body
 
-    if (![0, 1, 2].includes(itemId)) {
+    const item = ITEMS[itemId]
+
+    if (item == null) {
         res.res(400, 'invalid_item_id')
         return
     }
 
-    const { max, name, price } = ITEMS[itemId]
+    const { max, name, price } = item
 
     if (quantity < 1 || quantity > max) {
         res.res(400, 'invalid_quantity')
@@ -24,6 +26,7 @@ router.post('/', requireSignedIn, async (req, res) => {
     }
 
     const totalPrice = price * quantity * 100
+    const completedUrl = `${config.host}/shop`
     const response = await fetch('https://payments.yoco.com/api/checkouts', {
         method: 'POST',
         headers: {
@@ -33,9 +36,9 @@ router.post('/', requireSignedIn, async (req, res) => {
         body: JSON.stringify({
             amount: totalPrice,
             currency: 'ZAR',
-            cancelUrl: `${config.host}/pay/cancel`,
-            successUrl: `${config.host}/pay/success`,
-            failureUrl: `${config.host}/pay/failure`,
+            cancelUrl: completedUrl,
+            successUrl: completedUrl,
+            failureUrl: completedUrl,
             lineItems: [
                 {
                     displayName: name,
@@ -59,7 +62,6 @@ router.post('/', requireSignedIn, async (req, res) => {
     }
 
     const { redirectUrl } = await response.json()
-
     res.res(200, { url: redirectUrl })
 })
 
