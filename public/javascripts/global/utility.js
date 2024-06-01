@@ -1,13 +1,26 @@
 const INVENTORY_ITEMS = {
+    basicDogFood: {
+        food: 10,
+        image: '/assets/shop/egg-blue.png',
+        price: 35
+    },
     brownEgg: {
         image: '/assets/inventory/brown-egg.png',
-        name: 'Brown Egg',
         petId: 'brownDog',
         price: 150
     },
+    buffedDogFood: {
+        food: 20,
+        image: '/assets/shop/egg-green.png',
+        price: 65
+    },
+    primeDogFood: {
+        food: 30,
+        image: '/assets/shop/egg-blue.png',
+        price: 95
+    },
     whiteEgg: {
         image: '/assets/inventory/white-egg.png',
-        name: 'White Egg',
         petId: 'whiteDog',
         price: 150
     }
@@ -42,37 +55,37 @@ const PETS = { // ages range from 0 - 100
                 speed: 0
             },
             20: {
-                idleImage: 'brown',
+                idleImage: 'maroon',
                 moveAnimation: [
                     {
                         cooldown: 500,
-                        image: 'maroon'
+                        image: 'red'
                     },
                     {
                         cooldown: 500,
-                        image: 'pink'
+                        image: 'orange'
                     }
                 ],
-                speed: 50
+                speed: 100
             }
         }
     },
     whiteDog: {
         ages: {
             0: {
-                idleImage: 'white',
+                idleImage: 'rgb(0,0,0)',
                 speed: 0
             },
             20: {
-                idleImage: 'white',
+                idleImage: 'rgb(50,50,50)',
                 moveAnimation: [
                     {
                         cooldown: 500,
-                        image: 'gray'
+                        image: 'rgb(150,150,150)'
                     },
                     {
                         cooldown: 500,
-                        image: 'black'
+                        image: 'rgb(200,200,200)'
                     }
                 ],
                 speed: 50

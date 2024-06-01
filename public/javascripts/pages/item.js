@@ -1,4 +1,4 @@
-const itemId = window.location.pathname.split('/')[2]
+const itemId = getParam('id')
 
 onLoad(() => {
     byId('display-image').src = INVENTORY_ITEMS[itemId].image

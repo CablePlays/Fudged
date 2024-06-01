@@ -57,6 +57,14 @@
         height: 100px;
         width: 100px;
         position: absolute;
+
+        &.food-hover::before {
+            content: '';
+            background-color: rgb(255, 255, 255, 0.5);
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
     }
 
     .pixel-art {

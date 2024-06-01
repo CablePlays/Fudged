@@ -14,10 +14,10 @@
         "buffedDogFood": 0,
         "primeDogFood": 0
     },
-    "pets": [
-        {
+    "pets": {
+        "0": {
             "age": 50,
             "id": "brownDog"
         }
-    ]
+    }
 }

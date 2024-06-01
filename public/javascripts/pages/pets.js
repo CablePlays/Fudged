@@ -1,8 +1,12 @@
 const DROPZONE_HOVER_CLASS = 'dropzone-hover'
+const FOOD_HOVER_CLASS = 'food-hover'
 const petPadding = -50
-let draggingItemId
 
-const dropItemFunctions = {}
+const petObjects = []
+let draggingItemId
+let targetFeedingPet
+
+const useItemFunctions = {} // called when an item is used to update the amount
 
 onLoad(() => {
     loadInventory()
@@ -31,7 +35,7 @@ async function loadInventory() {
         imageElement.src = item.image
 
         const amountElement = createElement('p', { p: itemElement, t: amount })
-        dropItemFunctions[itemId] = () => {
+        useItemFunctions[itemId] = () => {
             amount--
             amountElement.innerHTML = amount
 
@@ -52,17 +56,47 @@ async function loadInventory() {
 async function loadPets() {
     const { pets } = await getRequest(`/users/${getUserId()}/pets`)
 
-    for (let petData of pets) {
-        const pet = new Pet(petData.id)
-        pet.setAge(petData.age)
+    for (let petId in pets) {
+        const petData = pets[petId]
+        new Pet(parseInt(petId), petData.id, petData.age)
     }
+}
+
+function getPetFromElement(element) {
+    for (let pet of petObjects) {
+        if (pet.element === element) {
+            return pet
+        }
+    }
+
+    return null
 }
 
 function setupPetsContainerListeners() {
     const petsContainer = getPetsContainer()
 
     petsContainer.addEventListener('dragenter', e => {
-        if (draggingItemId != null) {
+        if (draggingItemId == null) {
+            return
+        }
+
+        const { target } = e
+        const { food, petId } = INVENTORY_ITEMS[draggingItemId]
+
+        if (food != null && target.classList.contains('pet')) {
+            if (targetFeedingPet != null) {
+                targetFeedingPet.classList.remove(FOOD_HOVER_CLASS)
+            }
+
+            const pet = getPetFromElement(target)
+
+            if (pet.getAge() < 100) {
+                targetFeedingPet = target
+                target.classList.add(FOOD_HOVER_CLASS)
+            } else {
+                targetFeedingPet = null
+            }
+        } else if (petId != null) {
             petsContainer.classList.add(DROPZONE_HOVER_CLASS)
         }
     })
@@ -74,8 +108,14 @@ function setupPetsContainerListeners() {
     petsContainer.addEventListener('dragleave', e => {
         const { fromElement: toElement } = e
 
-        if (!toElement.classList.contains('pet') && toElement !== petsContainer) {
-            petsContainer.classList.remove(DROPZONE_HOVER_CLASS)
+        if (!toElement.classList.contains('pet')) {
+            if (targetFeedingPet != null) {
+                targetFeedingPet.classList.remove(FOOD_HOVER_CLASS)
+                targetFeedingPet = null
+            }
+            if (toElement !== petsContainer) {
+                petsContainer.classList.remove(DROPZONE_HOVER_CLASS)
+            }
         }
     })
 
@@ -84,37 +124,64 @@ function setupPetsContainerListeners() {
             return
         }
 
-        petsContainer.classList.remove(DROPZONE_HOVER_CLASS)
-        dropItemFunctions[draggingItemId]()
+        const { food: foodAmount, petId: petTypeId } = INVENTORY_ITEMS[draggingItemId]
 
-        const rect = petsContainer.getBoundingClientRect()
-        const posX = e.clientX - rect.left
-        const posY = e.clientY - rect.top
+        if (foodAmount != null) {
+            if (targetFeedingPet != null) {
+                targetFeedingPet.classList.remove(FOOD_HOVER_CLASS)
+                useItemFunctions[draggingItemId]()
 
-        const { petId } = INVENTORY_ITEMS[draggingItemId]
-        const pet = new Pet(petId)
-        pet.setPosition(posX - pet.element.clientWidth / 2, posY - pet.element.clientHeight / 2)
+                const pet = getPetFromElement(targetFeedingPet)
+                const { id: petId } = pet
 
-        postRequest(`/users/${getUserId()}/pets`, { itemId: draggingItemId })
+                if (petId == null) { // ID yet retreieved after creation
+                    return
+                }
+
+                pet.setAge(pet.getAge() + foodAmount)
+                postRequest(`/users/${getUserId()}/pets/${petId}/age`, { itemId: draggingItemId })
+            }
+        } else if (petTypeId != null) {
+            petsContainer.classList.remove(DROPZONE_HOVER_CLASS)
+            useItemFunctions[draggingItemId]()
+
+            const rect = petsContainer.getBoundingClientRect()
+            const posX = e.clientX - rect.left
+            const posY = e.clientY - rect.top
+
+            const idPromise = new Promise(r => postRequest(`/users/${getUserId()}/pets`, { itemId: draggingItemId }).then(v => r(v.id)))
+            const pet = new Pet(idPromise, petTypeId)
+            pet.setPosition(posX - pet.element.clientWidth / 2, posY - pet.element.clientHeight / 2)
+        }
     })
 }
 
 class Pet {
+    #age // [0; 100]
     #ageData
     #animationChecker
     #idle = true
 
-    constructor(petId) {
-        this.id = petId
+    constructor(id, typeId, age = 0) {
+        setTimeout(async () => this.id = await id) // allow ID to be promise
+        this.typeId = typeId
         this.element = createElement('div', { c: 'pet', p: getPetsContainer() })
+        petObjects.push(this)
 
-        this.setAge(0)
+        this.setAge(age)
         this.setPosition(...this.#getRandomPosition())
         this.applyAi()
     }
 
+    getAge() {
+        return this.#age
+    }
+
     setAge(age) {
-        const { ages } = PETS[this.id]
+        age = clamp(age, 0, 100)
+
+        this.#age = age
+        const { ages } = PETS[this.typeId]
         let usingAge
 
         for (let ageKey in ages) {

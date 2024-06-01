@@ -231,6 +231,13 @@ header #header-links a.selected .underline {
   width: 100px;
   position: absolute;
 }
+#pets-container .pet.food-hover::before {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
 #pets-container .pixel-art {
   display: flex;
   flex-wrap: wrap;

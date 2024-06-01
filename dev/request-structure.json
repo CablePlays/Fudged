@@ -22,7 +22,12 @@
             },
             "pets": {
                 "GET": "Get pets for user",
-                "POST": "Create new pet using inventory item"
+                "POST": "Create new pet using inventory item",
+                ":petId": {
+                    "age": {
+                        "POST": "Update age of pet"
+                    }
+                }
             }
         }
     }

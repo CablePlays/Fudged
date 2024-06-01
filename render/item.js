@@ -5,9 +5,9 @@ const router = express.Router()
 
 const itemIdRouter = express.Router()
 
-router.use('/:itemId', (req, res, next) => {
-    const { params } = req
-    const { itemId } = params
+router.use('/', (req, res, next) => {
+    const { query } = req
+    const { id: itemId } = query
 
     const item = INVENTORY_ITEMS[itemId]
 

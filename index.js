@@ -15,7 +15,9 @@ app.use(cookieParser())
 
 app.use('/', express.static('public'))
 
-app.use(REQUESTS_PATH, requestsRouter)
+app.use(REQUESTS_PATH, (req, res, next) => {
+    setTimeout(next, 5)
+}, requestsRouter)
 app.use('/', express.json(), renderRouter)
 
 app.listen(PORT, () => {
