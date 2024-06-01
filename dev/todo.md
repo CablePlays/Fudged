@@ -1,4 +1,4 @@
 # TODO
 
-* Order GET request permissions
 * Tab pay off button functionality
+* Side link list for small screens

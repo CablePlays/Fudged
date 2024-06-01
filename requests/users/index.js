@@ -1,6 +1,8 @@
 import express from 'express'
-import database, { getUser, isUser } from '../server/database.js'
-import { requireSelf } from './middleware.js'
+import database, { getUser, isUser } from '../../server/database.js'
+import { requireSelf } from '../middleware.js'
+
+import petsRouter from './pets.js'
 
 const router = express.Router()
 
@@ -44,5 +46,7 @@ userRouter.get('/inventory', requireSelf, (req, res) => {
     const inventory = getUser(targetUserId).get(database.PATH_USER_INVENTORY) ?? {}
     res.res(200, { inventory })
 })
+
+userRouter.use('/pets', petsRouter)
 
 export default router

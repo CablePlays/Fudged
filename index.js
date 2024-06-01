@@ -21,23 +21,3 @@ app.use('/', express.json(), renderRouter)
 app.listen(PORT, () => {
     console.info(`Server listening on port ${PORT}`)
 })
-
-class Dog {
-    constructor(name, breed) {
-        console.log('constructor')
-        this.name = name
-        this.breed = breed
-    }
-
-    bark() {
-        console.log('bark!')
-    }
-
-    info() {
-        return this.name + ' is a ' + this.breed
-    }
-}
-
-const d = new Dog('Fudge', 'Poodle')
-d.bark()
-console.log(d.info())

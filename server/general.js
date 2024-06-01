@@ -1,17 +1,13 @@
 export const INVENTORY_ITEMS = {
     brownEgg: {
         name: 'Brown Egg',
+        petId: 'brownDog',
         price: 150
     },
     whiteEgg: {
         name: 'White Egg',
+        petId: 'whiteDog',
         price: 150
-    },
-    2: {
-        mass: 1500,
-        max: 1,
-        name: 'Batch',
-        price: 200
     }
 }
 

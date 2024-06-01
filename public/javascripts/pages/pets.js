@@ -1,10 +1,12 @@
 const DROPZONE_HOVER_CLASS = 'dropzone-hover'
+const petPadding = -50
 let draggingItemId
 
 const dropItemFunctions = {}
 
 onLoad(() => {
     loadInventory()
+    loadPets()
     setupPetsContainerListeners()
 })
 
@@ -19,8 +21,10 @@ async function loadInventory() {
     byId('inventory-loading').remove()
 
     for (let itemId in items) {
-        const item = INVENTORY_ITEMS[itemId]
         let amount = items[itemId]
+        if (amount <= 0) continue
+
+        const item = INVENTORY_ITEMS[itemId]
 
         const itemElement = createElement('div', { c: 'item', p: itemsContainer })
         const imageElement = createElement('img', { p: itemElement })
@@ -31,7 +35,7 @@ async function loadInventory() {
             amount--
             amountElement.innerHTML = amount
 
-            if (amount === 0) {
+            if (amount <= 0) {
                 itemElement.remove()
             }
         }
@@ -42,6 +46,15 @@ async function loadInventory() {
         imageElement.addEventListener('dragend', e => {
             draggingItemId = null
         })
+    }
+}
+
+async function loadPets() {
+    const { pets } = await getRequest(`/users/${getUserId()}/pets`)
+
+    for (let petData of pets) {
+        const pet = new Pet(petData.id)
+        pet.setAge(petData.age)
     }
 }
 
@@ -80,15 +93,11 @@ function setupPetsContainerListeners() {
 
         const { petId } = INVENTORY_ITEMS[draggingItemId]
         const pet = new Pet(petId)
-        pet.setAge(50)
         pet.setPosition(posX - pet.element.clientWidth / 2, posY - pet.element.clientHeight / 2)
+
+        postRequest(`/users/${getUserId()}/pets`, { itemId: draggingItemId })
     })
 }
-
-let test
-setTimeout(() => {
-    test = new Pet('brownDog')
-}, 100)
 
 class Pet {
     #ageData
@@ -100,6 +109,7 @@ class Pet {
         this.element = createElement('div', { c: 'pet', p: getPetsContainer() })
 
         this.setAge(0)
+        this.setPosition(...this.#getRandomPosition())
         this.applyAi()
     }
 
@@ -141,20 +151,23 @@ class Pet {
         }
     }
 
-    applyAi() {
+    #getRandomPosition() {
         const petsContainer = getPetsContainer()
-        const petPadding = -50
 
-        this.setPosition(0, 0) // ensure there is smooth transition
+        return [
+            petPadding + Math.random() * (petsContainer.clientWidth - this.element.clientWidth - petPadding * 2),
+            petPadding + Math.random() * (petsContainer.clientHeight - this.element.clientHeight - petPadding * 2)
+        ]
+    }
 
+    applyAi() {
         setTimeout(async () => {
             while (true) {
                 const { speed } = this.#ageData
 
                 if (speed > 0) {
                     const [posX, posY] = this.getPosition()
-                    const newX = petPadding + Math.random() * (petsContainer.clientWidth - this.element.clientWidth - petPadding * 2)
-                    const newY = petPadding + Math.random() * (petsContainer.clientHeight - this.element.clientHeight - petPadding * 2)
+                    const [newX, newY] = this.#getRandomPosition()
 
                     const distance = Math.sqrt(Math.pow(posX - newX, 2) + Math.pow(posY - newY, 2))
                     const time = distance / speed
@@ -167,7 +180,7 @@ class Pet {
                 this.#setIdleAnimation(true)
                 await new Promise(r => setTimeout(r, 1000 + Math.random() * 4000))
             }
-        })
+        }, Math.random() * 3000)
     }
 
     getPosition() {

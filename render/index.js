@@ -136,7 +136,7 @@ router.get('/tab', requireSignedIn, (req, res) => {
 
 router.use('/item', itemRouter)
 
-router.get('*', (req, res) => {
+router.use('/', (req, res) => {
     res.setTitle('404')
     res.ren('errors/not-found')
 })

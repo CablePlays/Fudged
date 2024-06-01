@@ -59,6 +59,7 @@ const PATH_USER_GRADE = 'grade'
 const PATH_USER_GRAMS = 'grams'
 const PATH_USER_INVENTORY = 'inventory'
 const PATH_USER_NAME = 'name'
+const PATH_USER_PETS = 'pets'
 const PATH_USER_PHONE_NUMBER = 'phoneNumber'
 const PATH_USER_PICTURE = 'picture'
 const PATH_USER_SESSION_TOKEN = 'sessionToken'
@@ -105,6 +106,7 @@ export default {
     PATH_USER_GRAMS,
     PATH_USER_INVENTORY,
     PATH_USER_NAME,
+    PATH_USER_PETS,
     PATH_USER_PHONE_NUMBER,
     PATH_USER_PICTURE,
     PATH_USER_SESSION_TOKEN,

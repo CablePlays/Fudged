@@ -4,14 +4,22 @@ import database, { getDatabase } from '../server/database.js'
 const router = express.Router()
 
 router.get('/', (req, res) => {
-    const { query } = req
-    let { fulfilled, user: userId } = query
+    const { admin, query, userId } = req
+    let { fulfilled, user: targetUserId } = query
     fulfilled = (fulfilled == null) ? null : (fulfilled === 'true')
-    userId = parseInt(userId)
+    targetUserId = parseInt(targetUserId)
+
+    console.log(userId)
+    console.log(targetUserId)
+
+    if (!admin && targetUserId !== userId) {
+        res.res(400, 'not_self')
+        return
+    }
 
     let orders = getDatabase().get(database.PATH_ORDERS) ?? []
     orders = orders.filter(order =>
-        (isNaN(userId) || order.userId === userId) && (fulfilled == null || order.fulfilled === fulfilled))
+        (isNaN(targetUserId) || order.userId === targetUserId) && (fulfilled == null || order.fulfilled === fulfilled))
 
     res.res(200, { orders })
 })

@@ -18,7 +18,11 @@
         ":user": {
             "PUT": "Update user info",
             "inventory": {
-                "GET": "Get inventory items of a user"
+                "GET": "Get inventory items of user"
+            },
+            "pets": {
+                "GET": "Get pets for user",
+                "POST": "Create new pet using inventory item"
             }
         }
     }

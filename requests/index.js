@@ -4,10 +4,11 @@ import { OAuth2Client } from 'google-auth-library'
 import getRawBody from 'raw-body'
 import cookies from '../server/cookies.js'
 import database, { getUser, getUserId, isSigninValid, newUser } from '../server/database.js'
+import config from '../config.json' assert { type: "json" }
 
 import ordersRouter from './orders.js'
 import purchaseRouter from './purchase.js'
-import usersRouter from './users.js'
+import usersRouter from './users/index.js'
 
 const router = express.Router()
 
@@ -55,6 +56,7 @@ router.use('/', (req, res, next) => { // provide user information
     if (isSigninValid(req)) {
         req.signedIn = true
         req.userId = cookies.getUserId(req)
+        req.admin = (req.userId === config.adminUserId)
     } else {
         req.signedIn = false
     }
@@ -109,5 +111,9 @@ router.put('/handle-signin', async (req, res) => {
 router.use('/orders', ordersRouter)
 router.use('/purchase', purchaseRouter)
 router.use('/users', usersRouter)
+
+router.use('/', (req, res) => { // not found
+    res.res(404)
+})
 
 export default router
