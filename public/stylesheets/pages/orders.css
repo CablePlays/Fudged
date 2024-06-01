@@ -23,6 +23,10 @@ button {
   padding-top: 16px;
 }
 
+.p32 {
+  padding: 32px;
+}
+
 .spacer.v10 {
   height: 10px;
 }

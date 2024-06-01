@@ -14,6 +14,8 @@ app.set('views', 'views')
 app.use(cookieParser())
 
 app.use('/', express.static('public'))
+app.use('/robots.txt', express.static('robots.txt'))
+app.use('/sitemap.xml', express.static('sitemap.xml'))
 
 app.use(REQUESTS_PATH, (req, res, next) => {
     setTimeout(next, 5)

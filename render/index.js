@@ -111,6 +111,11 @@ router.get('/pets', requireSignedIn, (req, res) => {
     res.ren('pets')
 })
 
+router.get('/privacy-policy', requireSignedIn, (req, res) => {
+    res.setTitle('Privacy Policy')
+    res.ren('privacy-policy')
+})
+
 router.get('/shop', (req, res) => {
     res.setTitle('Shop')
     res.ren('shop')
