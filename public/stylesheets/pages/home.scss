@@ -154,14 +154,6 @@ $section-a-breakpoint: 800px;
     }
 }
 
-.section-temp {
-    background-color: black;
-    color: white;
-    font-weight: 700;
-    padding: 64px;
-    text-align: center;
-}
-
 .section-b {
     align-items: center;
     display: flex;
@@ -208,4 +200,29 @@ $section-a-breakpoint: 800px;
             }
         }
     }
+}
+
+.section-footer {
+    background-color: black;
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    padding: 16px;
+
+    a {
+        color: white;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.section-notice {
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    padding: 64px;
+    text-align: center;
 }

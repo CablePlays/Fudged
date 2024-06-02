@@ -356,14 +356,6 @@ header #header-links a.selected .underline {
   text-align: center;
 }
 
-.section-temp {
-  background-color: black;
-  color: white;
-  font-weight: 700;
-  padding: 64px;
-  text-align: center;
-}
-
 .section-b {
   align-items: center;
   display: flex;
@@ -404,4 +396,27 @@ header #header-links a.selected .underline {
   background-color: blue;
   height: 300px;
   width: 100%;
+}
+
+.section-footer {
+  background-color: black;
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  padding: 16px;
+}
+.section-footer a {
+  color: white;
+  text-decoration: none;
+}
+.section-footer a:hover {
+  text-decoration: underline;
+}
+
+.section-notice {
+  background-color: black;
+  color: white;
+  font-weight: 700;
+  padding: 64px;
+  text-align: center;
 }
