@@ -34,7 +34,7 @@ function handleProceedButton() {
         const { ok } = await postRequest('/purchase/inventory', { itemId })
 
         if (ok) {
-            location.href += '/purchased'
+            location.href = `/item/purchased?id=${itemId}`
         } else {
             waiting = false
             proceedButton.classList.remove('disabled')

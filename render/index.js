@@ -51,7 +51,7 @@ router.use('/', (req, res, next) => { // provide advanced render, placeholders &
     res.placeholders = {}
     res.placeholders.loading = 'Loading...'
 
-    const defaultTitle = 'Dogwave Fudge'
+    const defaultTitle = 'Simply Fudged'
     res.title = defaultTitle
     res.setTitle = title => res.title = `${title} | ${defaultTitle}`
 

@@ -1,6 +1,7 @@
 # TODO
 
 * Tab pay off button functionality
+* Fix home page scrolling so there are no buttons
 
 # Fudge
 

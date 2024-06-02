@@ -3,7 +3,7 @@ function getInfoElement() {
 }
 
 async function loadOrders() {
-    const { orders } = await getRequest(`/orders?fulfilled=false&user=${getUserId()}`)
+    const { orders } = await getRequest(`/orders?user=${getUserId()}`)
     const ordersTable = byId('orders-table')
 
     if (orders.length === 0) {
@@ -17,6 +17,7 @@ async function loadOrders() {
             createElement('td', { p: tr, t: ITEMS[order.itemId].name })
             createElement('td', { p: tr, t: 'x' + order.quantity })
             createElement('td', { p: tr, t: 'R' + (order.itemPrice * order.quantity) })
+            createElement('td', { p: tr, t: order.fulfilled ? 'Yes' : 'No' })
         }
 
         getInfoElement().remove()

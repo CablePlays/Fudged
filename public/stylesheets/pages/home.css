@@ -364,12 +364,6 @@ header #header-links a.selected .underline {
   padding: 64px;
   text-align: center;
 }
-.section-temp .error {
-  color: rgb(165, 42, 42);
-}
-.section-temp .success {
-  color: rgb(40, 167, 69);
-}
 
 .section-b {
   align-items: center;
