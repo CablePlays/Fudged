@@ -49,7 +49,7 @@ export const ITEMS = {
     }
 }
 
-export function createOrder(userId, itemId, quantity, rewardGrams) {
+export function createOrder(userId, itemId, quantity, reward) {
     const db = getDatabase()
     const userDb = getUser(userId)
 
@@ -73,6 +73,7 @@ export function createOrder(userId, itemId, quantity, rewardGrams) {
         itemId,
         quantity,
         itemPrice: price,
+        reward,
         fulfilled: false
     })
 
@@ -83,7 +84,7 @@ export function createOrder(userId, itemId, quantity, rewardGrams) {
     const totalMass = mass * quantity
     db.set(database.PATH_MASS_SOLD, (db.get(database.PATH_MASS_SOLD) ?? 0) + totalMass)
 
-    if (rewardGrams) {
+    if (!reward) {
         userDb.set(database.PATH_USER_GRAMS, (userDb.get(database.PATH_USER_GRAMS) ?? 0) + totalMass)
     }
 }

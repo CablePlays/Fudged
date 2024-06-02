@@ -18,7 +18,7 @@ app.use('/robots.txt', express.static('robots.txt'))
 app.use('/sitemap.xml', express.static('sitemap.xml'))
 
 app.use(REQUESTS_PATH, (req, res, next) => {
-    setTimeout(next, 5)
+    setTimeout(next, 0)
 }, requestsRouter)
 app.use('/', express.json(), renderRouter)
 
