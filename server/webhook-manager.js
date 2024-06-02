@@ -17,6 +17,8 @@ export function createWebhook(name, url) {
 }
 
 export function getWebhooks() {
+    console.info('Getting webhooks')
+    
     fetch('https://payments.yoco.com/api/webhooks', {
         method: 'GET',
         headers: {

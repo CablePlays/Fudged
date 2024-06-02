@@ -2,7 +2,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import renderRouter from './render/index.js'
 import requestsRouter from './requests/index.js'
-// import { createWebhook, deleteWebhook, getWebhooks } from './server/webhook-manager.js'
+import { createWebhook, deleteWebhook, getWebhooks } from './server/webhook-manager.js'
 
 const PORT = 4000
 const REQUESTS_PATH = '/requests'
