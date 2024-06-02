@@ -26,7 +26,7 @@ router.post('/', requireSignedIn, async (req, res) => {
     }
 
     const totalPrice = price * quantity * 100
-    const completedUrl = `${config.host}/shop`
+    const completedUrl = `${config.host}/orders`
     const response = await fetch('https://payments.yoco.com/api/checkouts', {
         method: 'POST',
         headers: {

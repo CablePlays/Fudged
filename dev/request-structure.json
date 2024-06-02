@@ -10,7 +10,7 @@
         "inventory": {
             "POST": "Purchase inventory item"
         },
-        "yoco": {
+        "yoco-webhook": {
             "POST": "Yoco payment webhook endpoint"
         }
     },
