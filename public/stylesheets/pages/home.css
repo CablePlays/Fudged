@@ -231,7 +231,7 @@ header #header-links a.selected .underline {
   }
 }
 .section-a .subsection-a {
-  background-image: url("../../assets/background.jpg");
+  background-image: url("/assets/background.jpg");
   background-size: cover;
 }
 .section-a .subsection-a .overlay {
@@ -326,11 +326,10 @@ header #header-links a.selected .underline {
   margin-top: 20px;
   width: 100%;
 }
-.section-a .subsection-b #shop-items #viewport .item .parts .left {
-  background-size: cover;
-  border-radius: 4px;
+.section-a .subsection-b #shop-items #viewport .item .parts img {
+  width: 100%;
 }
-.section-a .subsection-b #shop-items #viewport .item .parts .right {
+.section-a .subsection-b #shop-items #viewport .item .parts .desc {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -339,7 +338,7 @@ header #header-links a.selected .underline {
   row-gap: 10px;
   top: -20px;
 }
-.section-a .subsection-b #shop-items #viewport .item .parts .right a {
+.section-a .subsection-b #shop-items #viewport .item .parts .desc a {
   align-items: center;
   display: flex;
   font-size: 18px;
@@ -349,10 +348,10 @@ header #header-links a.selected .underline {
   transition: transform 0.1s;
   width: 90px;
 }
-.section-a .subsection-b #shop-items #viewport .item .parts .right a:hover {
+.section-a .subsection-b #shop-items #viewport .item .parts .desc a:hover {
   transform: scale(1.03);
 }
-.section-a .subsection-b #shop-items #viewport .item .parts .right p {
+.section-a .subsection-b #shop-items #viewport .item .parts .desc p {
   font-size: 14px;
   text-align: center;
 }

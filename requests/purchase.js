@@ -20,7 +20,7 @@ router.post('/', requireSignedIn, async (req, res) => {
 
     const { max, name, price } = item
 
-    if (quantity < 1 || quantity > max) {
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > max) {
         res.res(400, 'invalid_quantity')
         return
     }

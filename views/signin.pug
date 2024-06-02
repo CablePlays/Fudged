@@ -39,6 +39,7 @@ block script
         const viewElement = document.getElementsByClassName('view')[0]
 
         if (Math.random() < 0.5) {
+            viewElement.style['background-size'] = '250%'
             viewElement.style.color = 'white'
         } else {
             viewElement.style['background-size'] = 'cover'

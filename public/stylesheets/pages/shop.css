@@ -223,21 +223,12 @@ header #header-links a.selected .underline {
   background-color: rgb(187, 142, 100);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   display: grid;
-  min-height: 500px;
+  height: 500px;
   position: relative;
-}
-.section-a img {
-  display: block;
-  height: 250px;
 }
 @media screen and (min-width: 650px) {
   .section-a {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media screen and (min-width: 850px) {
-  .section-a img {
-    height: 450px;
   }
 }
 .section-a .subsection-a {
@@ -252,6 +243,20 @@ header #header-links a.selected .underline {
   display: flex;
   justify-content: center;
   padding-right: 16px;
+}
+.section-a .subsection-b img {
+  display: block;
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5));
+  height: 300px;
+}
+@media screen and (min-width: 750px) {
+  .section-a .subsection-b img {
+    height: 450px;
+  }
+}
+
+.section-b img {
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5));
 }
 
 .section-b,
@@ -279,7 +284,9 @@ header #header-links a.selected .underline {
 }
 .section-b .item a,
 .section-d .item a {
-  margin-top: 40px;
+  bottom: 40px;
+  position: absolute;
+  width: 236px;
 }
 .section-b .item img,
 .section-d .item img {
@@ -292,6 +299,7 @@ header #header-links a.selected .underline {
   color: white;
   font-weight: 700;
   margin-top: 20px;
+  z-index: 1;
 }
 
 .section-c {
@@ -311,7 +319,9 @@ header #header-links a.selected .underline {
   width: 300px;
 }
 .section-c .item a {
-  margin-top: 40px;
+  bottom: 40px;
+  position: absolute;
+  width: 236px;
 }
 .section-c .item img {
   display: block;
@@ -322,6 +332,7 @@ header #header-links a.selected .underline {
   color: rgb(187, 142, 100);
   font-weight: 700;
   margin-top: 20px;
+  z-index: 1;
 }
 
 .section-yoco {

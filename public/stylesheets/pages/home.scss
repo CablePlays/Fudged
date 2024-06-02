@@ -13,7 +13,7 @@ $section-a-breakpoint: 800px;
     }
 
     .subsection-a {
-        background-image: url('../../assets/background.jpg');
+        background-image: url('/assets/background.jpg');
         background-size: cover;
 
         .overlay {
@@ -114,12 +114,11 @@ $section-a-breakpoint: 800px;
                         margin-top: 20px;
                         width: 100%;
 
-                        .left {
-                            background-size: cover;
-                            border-radius: 4px;
+                        img {
+                            width: 100%;
                         }
 
-                        .right {
+                        .desc {
                             align-items: center;
                             display: flex;
                             flex-direction: column;

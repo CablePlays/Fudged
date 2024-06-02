@@ -4,7 +4,20 @@ block assets
     link(rel='stylesheet' href='/stylesheets/pages/shop.css')
 
 block content
-    .section-a
+    #packets-banner.section-a.invisible
+        .subsection-a
+            h1 Packets
+
+            .spacer.v20
+
+            p The perfect snack to sweeten your day.
+
+            .spacer.v20
+
+            a.primary(href='/checkout/packet') Purchase
+        .subsection-b
+            img(src=`/assets/products/${Math.random() < 0.5 ? 'packets-top.png' : 'packets-side.png'}`)
+    #jar-banner.section-a.invisible
         .subsection-a
             h1 Jar
 
@@ -16,8 +29,10 @@ block content
 
             a.primary(href='/checkout/jar') Purchase
         .subsection-b
-            img(src='/assets/shop/fudge-jar.png')
-    
+            img(src='/assets/products/jar.png')
+
+    script setVisible(Math.random() < 0.5 ? 'packets-banner' : 'jar-banner')
+
     .section-yoco
         .subsection-a
             img(src='/assets/logos/yoco.svg' onclick='window.open("https://yoco.com"), "_blank"')
@@ -30,19 +45,19 @@ block content
             h1 Packet
             p.description 50g
             p.price R12 / item
-            img(src='/assets/shop/egg-blue.png')
+            img(src='/assets/products/packets-top.png' style='transform: scale(2); margin: 60px 0 0 8%')
             a.primary(href='/checkout/packet') Purchase
         .item
             h1 Jar
-            p.description 800g
-            p.price R12 / item
-            img(src='/assets/shop/egg-blue.png')
+            p.description 400g
+            p.price R100
+            img(src='/assets/products/jar-with-label.png' style='transform: scale(1.6); margin: 65px 0 0 12%')
             a.primary(href='/checkout/jar') Purchase
         .item
             h1 Batch
-            p.description 1200g
-            p.price R12 / item
-            img(src='/assets/shop/egg-blue.png')
+            p.description 600g
+            p.price R140
+            img(src='/assets/products/batch.png' style='transform: scale(1.8); margin: 75px 0 0 12%')
             a.primary(href='/checkout/batch') Purchase
 
     .section-c
@@ -50,13 +65,13 @@ block content
             h2 Brown Egg
             p Hatches a brown dog.
             p.price 150g
-            img(src='/assets/shop/egg-blue.png')
+            img(src='/assets/placeholder.png')
             a.primary(href='/item?id=brownEgg') Purchase
         .item
             h2 White Egg
             p Hatches a white dog.
             p.price 150g
-            img(src='/assets/shop/egg-blue.png')
+            img(src='/assets/placeholder.png')
             a.primary(href='/item?id=whiteEgg') Purchase
 
     .section-d
@@ -64,17 +79,17 @@ block content
             h2 Basic Dog Food
             p.description Cheap dog food which grows a dog a little bit.
             p.price 35g
-            img(src='/assets/shop/egg-blue.png')
+            img(src='/assets/placeholder.png')
             a.primary(href='/item?id=basicDogFood') Purchase
         .item
             h2 Buffed Dog Food
             p.description Grows a dog a bit more than the cheap stuff.
             p.price 65g
-            img(src='/assets/shop/egg-blue.png')
+            img(src='/assets/placeholder.png')
             a.primary(href='/item?id=buffedDogFood') Purchase
         .item
             h2 Prime Dog Food
             p.description The best value dog food, but don't waste it.
             p.price 95g
-            img(src='/assets/shop/egg-blue.png')
+            img(src='/assets/placeholder.png')
             a.primary(href='/item?id=primeDogFood') Purchase

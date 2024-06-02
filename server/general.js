@@ -30,20 +30,20 @@ export const INVENTORY_ITEMS = {
 
 export const ITEMS = {
     batch: {
-        mass: 1500,
-        max: 1,
+        mass: 600,
+        max: 2,
         name: 'Batch',
-        price: 200
+        price: 140
     },
     jar: {
-        mass: 1000,
-        max: 2,
+        mass: 400,
+        max: 3,
         name: 'Jar',
         price: 100
     },
     packet: {
         mass: 50,
-        max: 20,
+        max: 10,
         name: 'Packet',
         price: 12
     }

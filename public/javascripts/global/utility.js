@@ -1,7 +1,7 @@
 const INVENTORY_ITEMS = {
     basicDogFood: {
         food: 10,
-        image: '/assets/shop/egg-blue.png',
+        image: '/assets/placeholder.png',
         price: 35
     },
     brownEgg: {
@@ -11,12 +11,12 @@ const INVENTORY_ITEMS = {
     },
     buffedDogFood: {
         food: 20,
-        image: '/assets/shop/egg-green.png',
+        image: '/assets/placeholder.png',
         price: 65
     },
     primeDogFood: {
         food: 30,
-        image: '/assets/shop/egg-blue.png',
+        image: '/assets/placeholder.png',
         price: 95
     },
     whiteEgg: {
@@ -28,20 +28,20 @@ const INVENTORY_ITEMS = {
 
 const ITEMS = {
     batch: {
-        mass: 1500,
-        max: 1,
+        mass: 600,
+        max: 2,
         name: 'Batch',
-        price: 200
+        price: 140
     },
     jar: {
-        mass: 1000,
-        max: 2,
+        mass: 400,
+        max: 3,
         name: 'Jar',
         price: 100
     },
     packet: {
         mass: 50,
-        max: 20,
+        max: 10,
         name: 'Packet',
         price: 12
     }
