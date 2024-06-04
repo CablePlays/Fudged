@@ -1,10 +1,20 @@
 import express from 'express'
-import database, { getUser, isUser } from '../../server/database.js'
-import { requireSelf } from '../middleware.js'
+import database, { getDatabase, getUser, getUserInfo, isUser } from '../../server/database.js'
+import { requireAdmin, requireSelf } from '../middleware.js'
 
 import petsRouter from './pets.js'
 
 const router = express.Router()
+
+router.get('/', requireAdmin, (req, res) => {
+    const users = getDatabase().get(database.PATH_USERS) ?? {}
+
+    for (let userId in users) {
+        users[userId] = getUserInfo(userId, true)
+    }
+
+    res.res(200, { users })
+})
 
 const userRouter = express.Router()
 
@@ -26,7 +36,7 @@ userRouter.put('/', requireSelf, (req, res) => {
     const { body, targetUserId } = req
     const { grade, name, phoneNumber, surname } = body
 
-    if (grade < 1 || grade > 13) {
+    if (!Number.isInteger(grade) || grade < 1 || grade > 13) {
         res.res(400, 'invalid_grade')
         return
     }
@@ -35,7 +45,7 @@ userRouter.put('/', requireSelf, (req, res) => {
 
     db.set(database.PATH_USER_GRADE, grade)
     db.set(database.PATH_USER_NAME, name)
-    db.set(database.PATH_USER_PHONE_NUMBER, phoneNumber)
+    db.set(database.PATH_USER_PHONE_NUMBER, phoneNumber?.trim())
     db.set(database.PATH_USER_SURNAME, surname)
 
     res.res(204)

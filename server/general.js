@@ -1,4 +1,5 @@
-import database, { getDatabase, getUser } from "./database.js"
+import database, { getDatabase, getUser } from './database.js'
+import config from '../config.json' assert { type: 'json' }
 
 export const INVENTORY_ITEMS = {
     basicDogFood: {
@@ -49,33 +50,40 @@ export const ITEMS = {
     }
 }
 
-export function createOrder(userId, itemId, quantity, reward) {
+/*
+    Types:
+        online
+        offline
+        tab
+        reward
+*/
+export function createOrder(userId, itemId, quantity, type, reward) {
     const db = getDatabase()
     const userDb = getUser(userId)
 
-    const orders = db.get(database.PATH_ORDERS) ?? []
-    const { mass, price } = ITEMS[itemId]
+    const orders = db.get(database.PATH_ORDERS) ?? {}
+    const { mass } = ITEMS[itemId]
 
     // order
 
-    let lastId = -1
+    let lastOrderId = -1
 
-    for (let order of orders) {
-        if (order.id > lastId) {
-            lastId = order.id
+    for (let orderId in orders) {
+        orderId = parseInt(orderId)
+
+        if (orderId > lastOrderId) {
+            lastOrderId = orderId
         }
     }
 
-    orders.push({
-        id: lastId + 1,
+    orders[lastOrderId + 1] = {
         userId,
         date: new Date().toLocaleDateString(),
         itemId,
         quantity,
-        itemPrice: price,
-        reward,
+        type,
         fulfilled: false
-    })
+    }
 
     db.set(database.PATH_ORDERS, orders)
 
@@ -84,7 +92,11 @@ export function createOrder(userId, itemId, quantity, reward) {
     const totalMass = mass * quantity
     db.set(database.PATH_MASS_SOLD, (db.get(database.PATH_MASS_SOLD) ?? 0) + totalMass)
 
-    if (!reward) {
+    if (reward) {
         userDb.set(database.PATH_USER_GRAMS, (userDb.get(database.PATH_USER_GRAMS) ?? 0) + totalMass)
     }
+}
+
+export function isAdmin(userId) {
+    return userId === config.adminUserId
 }

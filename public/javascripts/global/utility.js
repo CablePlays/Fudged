@@ -49,7 +49,7 @@ const ITEMS = {
 
 const PETS = { // ages range from 0 - 100
     brownDog: {
-        name: "Brown Dog",
+        name: 'Brown Dog',
         ages: {
             0: {
                 idleImage: 'brown',
@@ -72,7 +72,7 @@ const PETS = { // ages range from 0 - 100
         }
     },
     whiteDog: {
-        name: "White Dog",
+        name: 'White Dog',
         ages: {
             0: {
                 idleImage: 'rgb(0,0,0)',
@@ -134,7 +134,7 @@ function setParam(param, value) {
         searchParams.set(param, value)
     }
 
-    window.history.replaceState({}, "", url.toString())
+    window.history.replaceState({}, '', url.toString())
 }
 
 /* Elements */
@@ -147,9 +147,9 @@ function setVisible(element, visible = true) {
     element = byId(element)
 
     if (visible) {
-        element.classList.remove("invisible")
+        element.classList.remove('invisible')
     } else {
-        element.classList.add("invisible")
+        element.classList.add('invisible')
     }
 }
 
@@ -158,7 +158,7 @@ function createElement(type, options) {
     const { c, onClick, consumer, p, r, t } = options ?? {}
 
     if (c) {
-        const parts = c.split(" ")
+        const parts = c.split(' ')
 
         for (let clazz of parts) {
             element.classList.add(clazz)

@@ -1,0 +1,14 @@
+@import "../../global";
+
+table#users-table {
+    max-width: 100%;
+    width: 1000px;
+
+    td {
+        padding-top: 20px;
+    }
+
+    th {
+        text-align: start;
+    }
+}

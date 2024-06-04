@@ -16,7 +16,7 @@ async function loadOrders() {
             createElement('td', { p: tr, t: formatDate(order.date) })
             createElement('td', { p: tr, t: ITEMS[order.itemId].name })
             createElement('td', { p: tr, t: 'x' + order.quantity })
-            createElement('td', { p: tr, t: 'R' + (order.itemPrice * order.quantity) })
+            createElement('td', { p: tr, t: 'R' + (ITEMS[order.itemId].price * order.quantity) })
             createElement('td', { p: tr, t: order.fulfilled ? 'Yes' : 'No' })
         }
 

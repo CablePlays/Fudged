@@ -1,9 +1,10 @@
 import express from 'express'
 import cookies from '../server/cookies.js'
 import database, { getDatabase, getUser, getUserInfo, isSigninValid } from '../server/database.js'
+import { ITEMS, isAdmin } from '../server/general.js'
 import { requireSignedIn } from './middleware.js'
-import { ITEMS } from '../server/general.js'
 
+import adminRouter from './admin.js'
 import itemRouter from './item.js'
 
 const router = express.Router()
@@ -28,13 +29,19 @@ async function advancedRender(req, res, path, statusCode = 200) {
 
     const generateDisplays = condition => {
         return {
-            block: (condition ? "block" : "none"),
-            flex: (condition ? "flex" : "none"),
-            inlineBlock: (condition ? "inline-block" : "none")
+            block: (condition ? 'block' : 'none'),
+            flex: (condition ? 'flex' : 'none'),
+            inlineBlock: (condition ? 'inline-block' : 'none')
         }
     }
 
+    const admin = isAdmin != null && isAdmin(userId)
+
     const displays = {
+        admin: {
+            false: generateDisplays(!admin),
+            true: generateDisplays(admin)
+        },
         signedIn: {
             false: generateDisplays(!signedIn),
             true: generateDisplays(signedIn)
@@ -56,17 +63,6 @@ router.use('/', (req, res, next) => { // provide advanced render, placeholders &
     res.setTitle = title => res.title = `${title} | ${defaultTitle}`
 
     res.ren = (path, statusCode) => advancedRender(req, res, path, statusCode)
-    next()
-})
-
-router.use('/', (req, res, next) => { // provide user information
-    if (isSigninValid(req)) {
-        req.signedIn = true
-        req.userId = cookies.getUserId(req)
-    } else {
-        req.signedIn = false
-    }
-
     next()
 })
 
@@ -139,11 +135,27 @@ router.get('/tab', requireSignedIn, (req, res) => {
     res.ren('tab')
 })
 
+router.use('/admin', adminRouter)
 router.use('/item', itemRouter)
 
 router.use('/', (req, res) => {
     res.setTitle('404')
     res.ren('errors/not-found')
+})
+
+router.use('/', (err, req, res, next) => {
+    const { placeholders } = res
+    const status = err.status ?? 500
+
+    res.setTitle(status)
+
+    if (status === 403) {
+        res.ren('errors/forbidden')
+    } else {
+        placeholders.status = status
+        placeholders.message = err.message
+        res.ren('errors/other')
+    }
 })
 
 export default router

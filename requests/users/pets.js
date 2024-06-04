@@ -108,7 +108,7 @@ petRouter.post('/claim', requireSelf, (req, res) => {
     const { petId, targetUserId } = req
 
     getUser(targetUserId).delete(`${database.PATH_USER_PETS}.${petId}`)
-    createOrder(targetUserId, 'packet', 1, true)
+    createOrder(targetUserId, 'packet', 1, 'reward', false)
 
     res.res(204)
 })

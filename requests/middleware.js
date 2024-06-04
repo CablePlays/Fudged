@@ -1,3 +1,11 @@
+export function requireAdmin(req, res, next) {
+    if (req.admin) {
+        next()
+    } else {
+        res.res(403)
+    }
+}
+
 export function requireSelf(req, res, next) {
     if (req.userId === req.targetUserId) {
         next()

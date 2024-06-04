@@ -29,7 +29,7 @@ export function getUserId(email) {
 }
 
 export function isUser(userId) {
-    return getDatabase().has(PATH_USERS + '.' + userId)
+    return Number.isInteger(userId) && getDatabase().has(PATH_USERS + '.' + userId)
 }
 
 function getNextUserId() {
@@ -101,6 +101,7 @@ export function isSigninValid(req) {
 export default {
     PATH_MASS_SOLD,
     PATH_ORDERS,
+    PATH_USERS,
 
     PATH_USER_GRADE,
     PATH_USER_GRAMS,

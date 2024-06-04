@@ -1,0 +1,12 @@
+@import "../../global";
+
+#error-element,
+#info-element {
+    margin-top: 20px;
+    color: $color-error;
+}
+
+#success-element {
+    margin-top: 20px;
+    color: $color-success;
+}

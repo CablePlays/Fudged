@@ -3,8 +3,7 @@ import express from 'express'
 import { OAuth2Client } from 'google-auth-library'
 import getRawBody from 'raw-body'
 import cookies from '../server/cookies.js'
-import database, { getUser, getUserId, isSigninValid, newUser } from '../server/database.js'
-import config from '../config.json' assert { type: "json" }
+import database, { getUser, getUserId, newUser } from '../server/database.js'
 
 import ordersRouter from './orders.js'
 import purchaseRouter from './purchase.js'
@@ -50,18 +49,6 @@ router.use('/', (req, res, next) => { // handle body
 
         next()
     })
-})
-
-router.use('/', (req, res, next) => { // provide user information
-    if (isSigninValid(req)) {
-        req.signedIn = true
-        req.userId = cookies.getUserId(req)
-        req.admin = (req.userId === config.adminUserId)
-    } else {
-        req.signedIn = false
-    }
-
-    next()
 })
 
 router.put('/handle-signin', async (req, res) => {

@@ -1,0 +1,46 @@
+extends ../layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/admin/create-order.css')
+    script(src='/javascripts/pages/admin/create-order.js')
+
+block content
+    .plrt16
+        h1 Create Order
+
+        .spacer.v40
+
+        .create-container
+            p User ID
+            input#user-input(type='number')
+
+            .spacer.v20
+
+            p Item
+            select#item-input
+                option(value='packet') Packet
+                option(value='jar') Jar
+                option(value='batch') Batch
+            
+            .spacer.v20
+
+            p Quantity
+            input#quantity-input(type='number')
+
+            .spacer.v20
+
+            p Tab
+            input#tab-input(type='checkbox')
+
+            .spacer.v20
+
+            p Reward Grams
+            input#reward-input(type='checkbox')
+
+            p#error-element.invisible An error occured.
+            p#info-element.invisible Some required inputs are missing!
+            p#success-element.invisible Order created successfully.
+
+            .spacer.v20
+
+            button#create-button.primary.disabled Create

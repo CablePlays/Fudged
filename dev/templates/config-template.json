@@ -1,0 +1,6 @@
+{
+    "adminUserId": 0,
+    "host": "http://localhost",
+    "webhookSecret" : "",
+    "yocoPrivateKey": ""
+}

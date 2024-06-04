@@ -1,0 +1,231 @@
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.invisible {
+  display: none !important;
+}
+
+.limit-width {
+  max-width: 800px;
+}
+
+.plrt16 {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+}
+
+.p32 {
+  padding: 32px;
+}
+
+.spacer.v10 {
+  height: 10px;
+}
+
+.spacer.v20 {
+  height: 20px;
+}
+
+.spacer.v40 {
+  height: 40px;
+}
+
+.spacer.v60 {
+  height: 60px;
+}
+
+.spacer.v80 {
+  height: 80px;
+}
+
+a.primary,
+button.primary {
+  align-items: center;
+  background-color: rgb(241, 209, 27);
+  border: none;
+  border-radius: 4px;
+  color: black;
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  justify-content: center;
+  padding: 12px 8px;
+  text-decoration: none;
+  transition: background-color 0.15s;
+}
+a.primary.active-color:active:not(.disabled),
+button.primary.active-color:active:not(.disabled) {
+  background-color: rgb(247, 211, 12);
+  transition: background-color 0s;
+}
+a.primary:hover,
+button.primary:hover {
+  background-color: rgb(228, 197, 23);
+}
+a.primary.disabled,
+button.primary.disabled {
+  background-color: rgb(133, 117, 29);
+}
+
+.hamburger-icon {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  max-width: 38px;
+  min-width: 38px;
+  row-gap: 8px;
+}
+.hamburger-icon span {
+  background-color: rgb(150, 150, 150);
+  border-radius: 3px;
+  height: 4px;
+  transition: 0.25s;
+  width: 100%;
+}
+.hamburger-icon.active span:nth-child(1) {
+  transform: rotateZ(-45deg) translateY(9px) translateX(-8px);
+}
+.hamburger-icon.active span:nth-child(2) {
+  width: 0;
+}
+.hamburger-icon.active span:nth-child(3) {
+  transform: rotateZ(45deg) translateY(-9px) translateX(-8px);
+}
+
+@media screen and (min-width: 850px) {
+  #links-sidebar {
+    display: none !important;
+  }
+}
+header {
+  align-items: center;
+  background-color: rgb(241, 209, 27);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  height: 65px;
+  padding: 0 32px 0 32px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+@media screen and (min-width: 400px) {
+  header {
+    padding: 0 32px 0 64px;
+  }
+}
+header .account {
+  align-items: center;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  display: flex;
+}
+header .account .grams {
+  color: rgb(172, 103, 14);
+  font-weight: 800;
+}
+header .account .picture {
+  border-radius: 20px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+}
+header #header-hamburger-icon span {
+  background-color: black;
+}
+@media screen and (min-width: 850px) {
+  header #header-hamburger-icon {
+    display: none;
+  }
+}
+header #header-links {
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  display: none;
+  height: 100%;
+}
+@media screen and (min-width: 850px) {
+  header #header-links {
+    display: flex;
+  }
+}
+header #header-links a {
+  align-items: center;
+  color: black;
+  display: flex;
+  font-size: 18px;
+  font-weight: 500;
+  height: 100%;
+  justify-content: center;
+  padding: 8px;
+  position: relative;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+header #header-links a:hover {
+  color: rgb(50, 50, 50);
+}
+header #header-links a.selected .underline {
+  border-radius: 3px;
+  border-top: 5px solid rgb(172, 103, 14);
+  bottom: 0;
+  position: absolute;
+  width: max(100%, 70px);
+}
+
+.header-spacer {
+  height: 65px;
+}
+
+#links-sidebar {
+  background-color: rgb(187, 142, 100);
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: 0;
+  left: -300px;
+  overflow: hidden;
+  padding: 8px;
+  position: fixed;
+  row-gap: 8px;
+  top: 65px;
+  transition: 0.25s;
+  width: 300px;
+  z-index: 90;
+}
+#links-sidebar.visible {
+  left: 0;
+  height: calc(100vh - 65px);
+}
+#links-sidebar a {
+  background-color: rgb(172, 103, 14);
+  border-radius: 2px;
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+  transition: background-color 0.1s;
+}
+#links-sidebar a:hover {
+  background-color: rgb(190, 114, 15);
+}
+
+table#users-table {
+  max-width: 100%;
+  width: 1000px;
+}
+table#users-table td {
+  padding-top: 20px;
+}
+table#users-table th {
+  text-align: start;
+}

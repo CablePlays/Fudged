@@ -1,4 +1,4 @@
-import config from '../config.json' assert { type: "json" }
+import config from '../config.json' assert { type: 'json' }
 
 export function createWebhook(name, url) {
     console.info(`Creating webhook: ${url}`)

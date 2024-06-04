@@ -1,0 +1,20 @@
+extends ../layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/admin/users.css')
+    script(src='/javascripts/pages/admin/users.js')
+
+block content
+    .plrt16
+        h1 Users
+
+        .spacer.v40
+
+        p#loading-indicator= loading
+        table#users-table.invisible
+            tr
+                th ID
+                th Name
+                th Surname
+                th Phone Number
+                th Grade

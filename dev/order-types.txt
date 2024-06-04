@@ -1,0 +1,4 @@
+online: Was made on the website
+offline: Made in person
+tab: In person, but no payment was made
+reward: As a result from growing a dog

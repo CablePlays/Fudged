@@ -1,9 +1,9 @@
-const COOKIE_USER = "user_id"
-const COOKIE_SESSION_TOKEN = "session_token"
+const COOKIE_USER = 'user_id'
+const COOKIE_SESSION_TOKEN = 'session_token'
 
 function _getCookie(name) {
-    let cookies = decodeURIComponent(document.cookie || "").split(";")
-    let cname = name + "="
+    let cookies = decodeURIComponent(document.cookie || '').split(';')
+    let cname = name + '='
 
     for (let cookie of cookies) {
         cookie = cookie.trim()

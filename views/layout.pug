@@ -19,9 +19,11 @@ block body
                 .underline
             a(href='/details') Details
                 .underline
+            a(href='/admin' style=`display: ${displays.admin.true.flex}`) Admin
+                .underline
         .account
             p.grams(src=user.picture style=`display: ${displays.signedIn.true.block}`) #{user.grams}g
-            a.primary(href='signin' style=`display: ${displays.signedIn.false.block}`) Sign In
+            a.primary(href='/signin' style=`display: ${displays.signedIn.false.block}`) Sign In
             button.primary(onclick='signOut(); location.href = "/"' style=`display: ${displays.signedIn.true.block}`) Sign Out
             img.picture(onclick='location.href = "/details"' src=user.picture style=`display: ${displays.signedIn.true.block}`)
 
@@ -32,7 +34,8 @@ block body
                 '/orders': 2,
                 '/tab': 3,
                 '/pets': 4,
-                '/details': 5
+                '/details': 5,
+                '/admin': 6
             }[location.pathname]
 
             if (selectedLink != null) byId('header-links').children[selectedLink].classList.add('selected')
@@ -55,6 +58,7 @@ block body
         a(href='/tab') Tab
         a(href='/pets') Pets
         a(href='/details') Details
+        a(href='/admin' style=`display: ${displays.admin.true.flex}`) Admin
 
         script.
             let _sidebarVisible = false

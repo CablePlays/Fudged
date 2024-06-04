@@ -1,0 +1,22 @@
+extends ../layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/admin/orders.css')
+    script(src='/javascripts/pages/admin/orders.js')
+
+block content
+    .plrt16
+        h1 Orders
+
+        .spacer.v40
+
+        p#loading-indicator= loading
+        table#orders-table.invisible
+            th Date
+            th User
+            th Grade
+            th Phone Number
+            th Item
+            th Quantity
+            th Type
+            th Fulfilled

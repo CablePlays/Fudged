@@ -1,0 +1,26 @@
+extends ../layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/generic.css')
+
+block style
+    style.
+        a {
+            width: fit-content;
+        }
+
+block content
+    .plrt16
+        h1 Admin Page
+
+        .spacer.v20
+
+        a.primary(href='/admin/create-order') Create Order
+
+        .spacer.v20
+        
+        a.primary(href='/admin/orders') Orders
+
+        .spacer.v20
+        
+        a.primary(href='/admin/users') Users

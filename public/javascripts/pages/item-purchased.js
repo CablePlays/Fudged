@@ -6,6 +6,6 @@ onLoad(async () => {
         await new Promise(r => setTimeout(r, 1000))
     }
 
-    info.innerHTML = "Redirecting..."
+    info.innerHTML = 'Redirecting...'
     location.href = '/shop'
 })
