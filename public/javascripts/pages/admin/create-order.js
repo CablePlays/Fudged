@@ -17,6 +17,7 @@ function setupInputs() {
         const userId = parseInt(userInput.value)
         const itemId = byId('item-input').value
         const quantity = parseInt(byId('quantity-input').value)
+        const fulfilled = byId('fulfilled-input').checked
         const tab = byId('tab-input').checked
         const reward = byId('reward-input').checked
 
@@ -31,7 +32,7 @@ function setupInputs() {
         setVisible('info-element', false)
         createButton.classList.add('disabled')
 
-        const { ok } = await postRequest('/orders', { userId, itemId, quantity, tab, reward })
+        const { ok } = await postRequest('/orders', { userId, itemId, quantity, fulfilled, tab, reward })
         createButton.classList.remove('disabled')
 
         if (ok) {

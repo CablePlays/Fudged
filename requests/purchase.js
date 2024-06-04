@@ -101,7 +101,7 @@ router.post('/yoco-webhook', (req, res) => {
         return
     }
 
-    createOrder(userId, itemId, quantity, 'online', true)
+    createOrder(userId, itemId, quantity, 'online', { reward: true })
     res.res(204)
 })
 

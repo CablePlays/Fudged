@@ -50,14 +50,7 @@ export const ITEMS = {
     }
 }
 
-/*
-    Types:
-        online
-        offline
-        tab
-        reward
-*/
-export function createOrder(userId, itemId, quantity, type, reward) {
+export function createOrder(userId, itemId, quantity, type, { fulfilled = false, reward = false }) {
     const db = getDatabase()
     const userDb = getUser(userId)
 
@@ -82,7 +75,7 @@ export function createOrder(userId, itemId, quantity, type, reward) {
         itemId,
         quantity,
         type,
-        fulfilled: false
+        fulfilled
     }
 
     db.set(database.PATH_ORDERS, orders)

@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
 
 router.post('/', requireAdmin, (req, res) => {
     const { body } = req
-    const { userId, itemId, quantity, tab, reward } = body
+    const { userId, itemId, quantity, fulfilled, tab, reward } = body
 
     if (!isUser(userId)) {
         res.res(400, 'invalid_user')
@@ -49,8 +49,12 @@ router.post('/', requireAdmin, (req, res) => {
         res.res(400, 'invalid_quantity')
         return
     }
+    if (typeof fulfilled !== 'boolean' || typeof tab !== 'boolean' || typeof reward !== 'boolean') {
+        res.res(400)
+        return
+    }
 
-    createOrder(userId, itemId, quantity, tab ? 'tab' : 'offline', reward)
+    createOrder(userId, itemId, quantity, tab ? 'tab' : 'offline', { fulfilled, reward })
 
     if (tab) {
         const totalPrice = item.price * quantity
