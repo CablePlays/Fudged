@@ -34,9 +34,13 @@ app.use('/', (req, res, next) => { // provide user information
     next()
 })
 
-app.use(REQUESTS_PATH, (req, res, next) => {
-    setTimeout(next, 500)
-}, requestsRouter)
+if (process.env.NODE_ENV === 'development') { // artificial latency
+    app.use(REQUESTS_PATH, (req, res, next) => {
+        setTimeout(next, 500)
+    })
+}
+
+app.use(REQUESTS_PATH, requestsRouter)
 app.use('/', express.json(), renderRouter)
 
 app.listen(PORT, () => {

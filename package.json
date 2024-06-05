@@ -5,7 +5,7 @@
     "type": "module",
     "main": "index.js",
     "scripts": {
-        "d": "nodemon index"
+        "d": "cross-env NODE_ENV=development nodemon index"
     },
     "keywords": [],
     "author": "",
@@ -20,6 +20,7 @@
         "raw-body": "^2.5.2"
     },
     "devDependencies": {
+        "cross-env": "^7.0.3",
         "nodemon": "^3.1.0"
     },
     "nodemonConfig": {
