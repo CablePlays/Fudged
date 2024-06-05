@@ -51,7 +51,8 @@ $item-gap: 64px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: 100%;
+        padding-left: 16px;
+        text-align: center;
     }
 
     .subsection-b {
@@ -69,7 +70,7 @@ $item-gap: 64px;
                 height: 300px;
             }
 
-            @media screen and (min-width: 750px) {
+            @media screen and (min-width: 900px) {
                 height: 450px;
             }
         }

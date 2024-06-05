@@ -236,7 +236,8 @@ header #header-links a.selected .underline {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
+  padding-left: 16px;
+  text-align: center;
 }
 .section-a .subsection-b {
   align-items: center;
@@ -254,7 +255,7 @@ header #header-links a.selected .underline {
     height: 300px;
   }
 }
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 900px) {
   .section-a .subsection-b img {
     height: 450px;
   }
