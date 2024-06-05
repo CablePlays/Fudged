@@ -102,7 +102,7 @@ button.primary.disabled {
   transform: rotateZ(45deg) translateY(-9px) translateX(-8px);
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 950px) {
   #links-sidebar {
     display: none !important;
   }
@@ -143,7 +143,7 @@ header .account .picture {
 header #header-hamburger-icon span {
   background-color: black;
 }
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 950px) {
   header #header-hamburger-icon {
     display: none;
   }
@@ -154,7 +154,7 @@ header #header-links {
   display: none;
   height: 100%;
 }
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 950px) {
   header #header-links {
     display: flex;
   }
