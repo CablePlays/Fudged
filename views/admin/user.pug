@@ -1,0 +1,22 @@
+extends ../layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/generic.css')
+    script(src='/javascripts/pages/admin/user.js')
+
+block content
+    .plrt16
+        h1 User - #{userName} - Admin
+
+        .spacer.v20
+
+        h2 Grams
+        p#mass-display
+        .spacer.v10
+        input#mass-input(type='number')
+        p#mass-sold-info.invisible(style='margin-top: 10px')
+        .spacer.v20
+        button#mass-sold-add-button.primary Add
+
+block script
+    script setupGrams(#{grams})

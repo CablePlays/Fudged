@@ -51,6 +51,23 @@ userRouter.put('/', requireSelf, (req, res) => {
     res.res(204)
 })
 
+userRouter.post('/grams', requireAdmin, (req, res) => {
+    const { body, targetUserId } = req
+    const { amount } = body
+
+    if (!Number.isInteger(amount)) {
+        res.res(400, 'invalid_amount')
+        return
+    }
+
+    const userDb = getUser(targetUserId)
+    const grams = userDb.get(database.PATH_USER_GRAMS) ?? 0
+    const newGrams = grams + amount
+
+    userDb.set(database.PATH_USER_GRAMS, newGrams)
+    res.res(200, { grams: newGrams })
+})
+
 userRouter.get('/inventory', requireSelf, (req, res) => {
     const { targetUserId } = req
     const inventory = getUser(targetUserId).get(database.PATH_USER_INVENTORY) ?? {}

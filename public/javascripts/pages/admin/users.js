@@ -25,8 +25,8 @@ async function loadUsers() {
         createElement('td', { p: row, t: user.surname })
         createElement('td', { p: row, t: formatPhoneNumber(user.phoneNumber) })
         createElement('td', { p: row, t: formatGrade(user.grade) })
-        const linkContainer = createElement('td', { p: row })
-        createElement('a', { c: 'primary', p: linkContainer, t: 'Create Order' }).href = `/admin/create-order?user=${userId}`
+        createElement('a', { c: 'primary', p: createElement('td', { p: row }), t: 'Create Order' }).href = `/admin/create-order?user=${userId}`
+        createElement('a', { c: 'primary', p: createElement('td', { p: row }), t: 'Manage' }).href = `/admin/users/${userId}`
     }
 
     setVisible(usersTable)

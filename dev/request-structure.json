@@ -2,6 +2,9 @@
     "handle-signin": {
         "PUT": "Handle login token from Google"
     },
+    "mass-sold": {
+        "POST": "Add total mass sold"
+    },
     "orders": {
         "GET": "Get orders",
         "POST": "Create order",
@@ -22,6 +25,9 @@
         "GET": "Get list of all users",
         ":user": {
             "PUT": "Update user info",
+            "grams": {
+                "POST": "Add grams for user"
+            },
             "inventory": {
                 "GET": "Get inventory items of user"
             },

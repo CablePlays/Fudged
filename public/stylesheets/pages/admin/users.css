@@ -223,6 +223,9 @@ table#users-table {
   max-width: 100%;
   width: 1000px;
 }
+table#users-table a {
+  margin-right: 20px;
+}
 table#users-table td {
   padding-top: 20px;
 }

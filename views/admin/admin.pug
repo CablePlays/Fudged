@@ -5,22 +5,19 @@ block assets
 
 block style
     style.
-        a {
-            width: fit-content;
+        .links-container {
+            column-gap: 20px;
+            display: flex;
         }
 
 block content
     .plrt16
-        h1 Admin Page
+        h1 Admin Portal
 
         .spacer.v20
 
-        a.primary(href='/admin/create-order') Create Order
-
-        .spacer.v20
-        
-        a.primary(href='/admin/orders') Orders
-
-        .spacer.v20
-        
-        a.primary(href='/admin/users') Users
+        .links-container
+            a.primary(href='/admin/create-order') Create Order
+            a.primary(href='/admin/general') General
+            a.primary(href='/admin/orders') Orders
+            a.primary(href='/admin/users') Users

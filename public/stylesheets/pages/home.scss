@@ -193,8 +193,7 @@ $section-a-breakpoint: 800px;
         .subsection-b {
             padding: 64px;
 
-            div {
-                background-color: blue;
+            img {
                 height: 300px;
                 width: 100%;
             }
@@ -217,12 +216,4 @@ $section-a-breakpoint: 800px;
             text-decoration: underline;
         }
     }
-}
-
-.section-notice {
-    background-color: black;
-    color: white;
-    font-weight: 700;
-    padding: 64px;
-    text-align: center;
 }

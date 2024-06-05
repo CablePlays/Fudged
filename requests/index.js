@@ -3,7 +3,8 @@ import express from 'express'
 import { OAuth2Client } from 'google-auth-library'
 import getRawBody from 'raw-body'
 import cookies from '../server/cookies.js'
-import database, { getUser, getUserId, newUser } from '../server/database.js'
+import database, { getDatabase, getUser, getUserId, newUser } from '../server/database.js'
+import { requireAdmin } from './middleware.js'
 
 import ordersRouter from './orders.js'
 import purchaseRouter from './purchase.js'
@@ -93,6 +94,23 @@ router.put('/handle-signin', async (req, res) => {
     res.cookie(cookies.COOKIE_USER, userId)
     res.cookie(cookies.COOKIE_SESSION_TOEN, sessionToken)
     res.res(200, { newUser: isNewUser })
+})
+
+router.post('/mass-sold', requireAdmin, (req, res) => {
+    const { body } = req
+    const { amount } = body
+
+    if (!Number.isInteger(amount)) {
+        res.res(400, 'invalid_amount')
+        return
+    }
+
+    const db = getDatabase()
+    const massSold = db.get(database.PATH_MASS_SOLD) ?? 0
+    const newMassSold = massSold + amount
+    db.set(database.PATH_MASS_SOLD, newMassSold)
+
+    res.res(200, { massSold: newMassSold })
 })
 
 router.use('/orders', ordersRouter)

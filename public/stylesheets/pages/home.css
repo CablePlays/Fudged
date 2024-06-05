@@ -392,8 +392,7 @@ header #header-links a.selected .underline {
 .section-c .subsection-container .subsection-b {
   padding: 64px;
 }
-.section-c .subsection-container .subsection-b div {
-  background-color: blue;
+.section-c .subsection-container .subsection-b img {
   height: 300px;
   width: 100%;
 }
@@ -411,12 +410,4 @@ header #header-links a.selected .underline {
 }
 .section-footer a:hover {
   text-decoration: underline;
-}
-
-.section-notice {
-  background-color: black;
-  color: white;
-  font-weight: 700;
-  padding: 64px;
-  text-align: center;
 }
