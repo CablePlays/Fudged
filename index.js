@@ -35,7 +35,7 @@ app.use('/', (req, res, next) => { // provide user information
 })
 
 app.use(REQUESTS_PATH, (req, res, next) => {
-    setTimeout(next, 500)
+    setTimeout(next, 0)
 }, requestsRouter)
 app.use('/', express.json(), renderRouter)
 
