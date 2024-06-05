@@ -39,6 +39,11 @@ router.get('/orders', (req, res) => {
     res.ren('admin/orders')
 })
 
+router.get('/tabs', (req, res) => {
+    res.setTitleAdmin('Tabs')
+    res.ren('admin/tabs')
+})
+
 router.get('/users', (req, res) => {
     res.setTitleAdmin('Users')
     res.ren('admin/users')

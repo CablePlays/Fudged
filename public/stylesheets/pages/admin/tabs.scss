@@ -1,0 +1,14 @@
+@import "../../global";
+
+table#tabs-table {
+    max-width: 100%;
+    width: 600px;
+
+    td {
+        padding-top: 20px;
+    }
+
+    th {
+        text-align: start;
+    }
+}

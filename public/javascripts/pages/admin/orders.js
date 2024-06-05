@@ -1,5 +1,5 @@
 onLoad(() => {
-    loadOrders()
+    loadTabs()
 })
 
 function formatGrade(grade) {
@@ -10,7 +10,7 @@ function formatPhoneNumber(phoneNumber) {
     return phoneNumber == null || phoneNumber === '' ? 'N/A' : phoneNumber
 }
 
-async function loadOrders() {
+async function loadTabs() {
     const { orders } = await getRequest('/orders')
     orders.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 

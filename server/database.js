@@ -1,10 +1,11 @@
 import { FSDB } from 'file-system-db'
+import fs from 'fs'
 import path from 'path'
 import cookies from './cookies.js'
 
 const DIRECTORY = "./database"
 const USER_DIRECTORY = path.join(DIRECTORY, "users")
-const compact = false
+const compact = process.env.NODE_ENV !== 'development'
 
 /* Database */
 
@@ -66,8 +67,10 @@ const PATH_USER_SESSION_TOKEN = 'sessionToken'
 const PATH_USER_SURNAME = 'surname'
 const PATH_USER_TAB = 'tab'
 
+const USER_FILE_PREFIX = 'user'
+
 function getUserFileName(userId) {
-    return `user${userId}`
+    return USER_FILE_PREFIX + userId
 }
 
 export function getUser(userId) {
@@ -96,6 +99,32 @@ export function getUserInfo(userId, includePrivate = false) {
 export function isSigninValid(req) {
     const userId = cookies.getUserId(req)
     return userId != null && isUser(userId) && (cookies.getSessionToken(req) === getUser(userId).get(PATH_USER_SESSION_TOKEN))
+}
+
+export async function forEachUser(consumer) {
+    await new Promise(r => fs.readdir(USER_DIRECTORY, async (error, files) => {
+        if (error) {
+            console.error(error)
+        } else {
+            const asyncTasks = []
+
+            for (let fileName of files) {
+                const userId = parseInt(fileName.substring(USER_FILE_PREFIX.length, fileName.length - '.json'.length))
+                const db = new FSDB(path.join(USER_DIRECTORY, fileName), compact)
+                const promise = consumer(userId, db)
+
+                if (promise instanceof Promise) {
+                    asyncTasks.push(promise)
+                }
+            }
+
+            if (asyncTasks.length > 0) {
+                await Promise.all(asyncTasks)
+            }
+        }
+
+        r()
+    }))
 }
 
 export default {

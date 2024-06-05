@@ -1,0 +1,18 @@
+extends ../layout
+
+block assets
+    link(rel='stylesheet' href='/stylesheets/pages/admin/tabs.css')
+    script(src='/javascripts/pages/admin/tabs.js')
+
+block content
+    .plrt16
+        h1 Tabs - Admin
+
+        .spacer.v40
+
+        p#loading-indicator= loading
+        table#tabs-table.invisible
+            th User ID
+            th Name
+            th Surname
+            th Tab

@@ -3,7 +3,7 @@ import express from 'express'
 import { OAuth2Client } from 'google-auth-library'
 import getRawBody from 'raw-body'
 import cookies from '../server/cookies.js'
-import database, { getDatabase, getUser, getUserId, newUser } from '../server/database.js'
+import database, { forEachUser, getDatabase, getUser, getUserId, getUserInfo, newUser } from '../server/database.js'
 import { requireAdmin } from './middleware.js'
 
 import ordersRouter from './orders.js'
@@ -111,6 +111,20 @@ router.post('/mass-sold', requireAdmin, (req, res) => {
     db.set(database.PATH_MASS_SOLD, newMassSold)
 
     res.res(200, { massSold: newMassSold })
+})
+
+router.get('/tabs', requireAdmin, async (req, res) => {
+    const tabs = []
+
+    await forEachUser((userId, db) => {
+        const tab = db.get(database.PATH_USER_TAB) ?? 0
+
+        if (tab > 0) {
+            tabs.push({ ...getUserInfo(userId), tab })
+        }
+    })
+
+    res.res(200, { tabs })
 })
 
 router.use('/orders', ordersRouter)

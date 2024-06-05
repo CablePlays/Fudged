@@ -21,6 +21,9 @@
             "POST": "Yoco payment webhook endpoint"
         }
     },
+    "tabs": {
+        "GET": "Get tabs"
+    },
     "users": {
         "GET": "Get list of all users",
         ":user": {
