@@ -107,7 +107,7 @@ router.get('/pets', requireSignedIn, (req, res) => {
     res.ren('pets')
 })
 
-router.get('/privacy-policy', requireSignedIn, (req, res) => {
+router.get('/privacy-policy', (req, res) => {
     res.setTitle('Privacy Policy')
     res.ren('privacy-policy')
 })
