@@ -1,10 +1,12 @@
-import cors from 'cors'
 import express from 'express'
 import database, { getDatabase } from '../server/database.js'
 
 const router = express.Router()
 
-router.use('/', cors())
+router.use('/', (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    next()
+})
 
 router.get('/stats', (req, res) => {
     const db = getDatabase()
