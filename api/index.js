@@ -1,7 +1,10 @@
+import cors from 'cors'
 import express from 'express'
 import database, { getDatabase } from '../server/database.js'
 
 const router = express.Router()
+
+router.use('/', cors())
 
 router.get('/stats', (req, res) => {
     const db = getDatabase()
@@ -17,7 +20,6 @@ router.get('/stats', (req, res) => {
     }
 
     const massSold = db.get(database.PATH_MASS_SOLD) ?? 0
-
     res.json({ massSold, orderCount })
 })
 
