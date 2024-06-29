@@ -22,7 +22,7 @@ block body
             a(href='/admin' style=`display: ${displays.admin.true.flex}`) Admin
                 .underline
         .account
-            p.grams(src=user.picture style=`display: ${displays.signedIn.true.block}`) #{user.grams}g
+            p.grams(src=user.picture style=`display: ${displays.signedIn.true.block}`) #{user.grams}gz
             a.primary(href='/signin' style=`display: ${displays.signedIn.false.block}`) Sign In
             button.primary(onclick='signOut(); location.href = "/"' style=`display: ${displays.signedIn.true.block}`) Sign Out
             img.picture(onclick='location.href = "/details"' src=user.picture style=`display: ${displays.signedIn.true.block}`)
@@ -73,4 +73,9 @@ block body
                 }
             })
 
-    block content
+    ._content-container
+        block content
+
+    footer
+        a(href='/privacy-policy') Privacy Policy
+        p &copy 2024 <a href='/'>Simply Fudged</a>

@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+._content-container {
+  min-height: calc(100vh - 65px);
+}
+
 button {
   cursor: pointer;
 }
@@ -100,6 +104,21 @@ button.primary.disabled {
 }
 .hamburger-icon.active span:nth-child(3) {
   transform: rotateZ(45deg) translateY(-9px) translateX(-8px);
+}
+
+footer {
+  background-color: black;
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  padding: 16px;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
 }
 
 @media screen and (min-width: 950px) {

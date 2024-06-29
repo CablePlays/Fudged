@@ -5,7 +5,7 @@ block assets
     script(src='/javascripts/pages/home.js')
 
 block content
-    .section-a
+    .section-top
         .subsection-a
             .overlay
                 h1 Simply Fudged
@@ -57,11 +57,11 @@ block content
 
             button#free-scroll-button Earn Free Fudge!
 
-    .section-b
+    .section-mass
         h1 #{massSold}kg Fudge Sold
         p.limit-width Our fudge is the favourite of many people, making them always come back for more.
 
-    #free-scroll-target.section-c
+    #free-scroll-target.section-free
         .spacer.v40
 
         h1 Earn Free Fudge
@@ -71,14 +71,11 @@ block content
         .subsection-container
             .subsection-a
                 p.
-                    Every time you purchase fudge, you are rewarded with grams equivalent to the total weight of fudge bought.
-                    You can use these grams to purchase eggs and hatch your own puppies (yes, dogs come from eggs).
+                    Every time you purchase fudge, you are rewarded with a special currency, called Gramz (gz), equivalent to the total weight of fudge bought
+                    (e.g. if you buy a 50g packet, you earn 50 Gramz - the speical currency on this website).
+                    You can use Gramz to purchase eggs and hatch your own puppies (yes, dogs come from eggs here).
                     Grow your puppies using dog food and earn free fudge for every fully grown dog!
             .subsection-b
                 //- img
                 h3 This Feature Is Still Being Developed!
-                p ...but you can earn grams in the meantime :)
-    
-    .section-footer
-        a(href='/privacy-policy') Privacy Policy
-        p &copy 2024 <a href='/'>Simply Fudge</a>
+                p ...but you can earn Gramz in the meantime ;)
