@@ -2,34 +2,34 @@
 
 $section-a-breakpoint: 800px;
 
-.section-free {
-    align-items: center;
-    background-color: $color-tertiary-400;
-    display: flex;
-    height: calc(100vh - $header-height);
-    flex-direction: column;
+// .section-free {
+//     align-items: center;
+//     background-color: $color-tertiary-400;
+//     display: flex;
+//     height: calc(100vh - $header-height);
+//     flex-direction: column;
 
-    .subsection-container {
-        display: grid;
-        // grid-template-columns: repeat(2, 1fr);
-        height: 100%;
+//     .subsection-container {
+//         display: grid;
+//         // grid-template-columns: repeat(2, 1fr);
+//         height: 100%;
 
-        .subsection-a {
-            line-height: 25px;
-            padding: 128px 32px 0 32px;
-            text-align: justify;
-        }
+//         .subsection-a {
+//             line-height: 25px;
+//             padding: 128px 32px 0 32px;
+//             text-align: justify;
+//         }
 
-        .subsection-b {
-            padding: 64px;
+//         .subsection-b {
+//             padding: 64px;
 
-            img {
-                height: 300px;
-                width: 100%;
-            }
-        }
-    }
-}
+//             img {
+//                 height: 300px;
+//                 width: 100%;
+//             }
+//         }
+//     }
+// }
 
 .section-mass {
     align-items: center;
@@ -75,6 +75,14 @@ $section-a-breakpoint: 800px;
 
             @media screen and (max-width: 400px) {
                 transform: scale(0.95);
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            p {
+                font-size: 18px;
             }
 
             .row {
@@ -150,7 +158,7 @@ $section-a-breakpoint: 800px;
                     width: 300px;
 
                     h2 {
-                        padding-right: 16px;
+                        margin-top: 5px;
                         text-transform: uppercase;
                     }
 

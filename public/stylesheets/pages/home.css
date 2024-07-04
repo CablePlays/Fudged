@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -11,6 +10,38 @@
 
 button {
   cursor: pointer;
+}
+
+.font-large {
+  font-family: "Chilanka", cursive;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.font-small {
+  font-family: "Margarine", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Chilanka", cursive;
+  font-style: normal;
+  font-weight: 900;
+}
+
+p {
+  font-family: "Margarine", sans-serif;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .invisible {
@@ -53,15 +84,12 @@ button {
 
 a.primary,
 button.primary {
-  align-items: center;
   background-color: rgb(241, 209, 27);
   border: none;
   border-radius: 4px;
   color: black;
-  display: flex;
   font-size: 14px;
   font-weight: 500;
-  justify-content: center;
   padding: 12px 8px;
   text-decoration: none;
   transition: background-color 0.15s;
@@ -183,13 +211,11 @@ header #header-links a {
   color: black;
   display: flex;
   font-size: 18px;
-  font-weight: 500;
   height: 100%;
   justify-content: center;
   padding: 8px;
   position: relative;
   text-decoration: none;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 header #header-links a:hover {
   color: rgb(50, 50, 50);
@@ -238,30 +264,6 @@ header #header-links a.selected .underline {
   background-color: rgb(190, 114, 15);
 }
 
-.section-free {
-  align-items: center;
-  background-color: rgb(187, 142, 100);
-  display: flex;
-  height: calc(100vh - 65px);
-  flex-direction: column;
-}
-.section-free .subsection-container {
-  display: grid;
-  height: 100%;
-}
-.section-free .subsection-container .subsection-a {
-  line-height: 25px;
-  padding: 128px 32px 0 32px;
-  text-align: justify;
-}
-.section-free .subsection-container .subsection-b {
-  padding: 64px;
-}
-.section-free .subsection-container .subsection-b img {
-  height: 300px;
-  width: 100%;
-}
-
 .section-mass {
   align-items: center;
   display: flex;
@@ -307,6 +309,12 @@ header #header-links a.selected .underline {
   .section-top .subsection-a .overlay {
     transform: scale(0.95);
   }
+}
+.section-top .subsection-a .overlay h1 {
+  font-size: 38px;
+}
+.section-top .subsection-a .overlay p {
+  font-size: 18px;
 }
 .section-top .subsection-a .overlay .row {
   align-items: center;
@@ -375,7 +383,7 @@ header #header-links a.selected .underline {
   width: 300px;
 }
 .section-top .subsection-b #shop-items #viewport .item h2 {
-  padding-right: 16px;
+  margin-top: 5px;
   text-transform: uppercase;
 }
 .section-top .subsection-b #shop-items #viewport .item .parts {
